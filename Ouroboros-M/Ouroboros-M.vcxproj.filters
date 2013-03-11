@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Bench">
+      <UniqueIdentifier>{9ba0e86d-c84e-467c-bb40-048fa564be93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Bench\Language">
+      <UniqueIdentifier>{0f03c05f-119f-4b2c-a213-e73533179f3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Bench">
+      <UniqueIdentifier>{c5d24c44-c033-4be0-b0cf-76a498684e3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Bench\Language">
+      <UniqueIdentifier>{eb93162a-0694-4ff5-bf50-7eddcb9f5243}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Common">
+      <UniqueIdentifier>{8c4665ef-cf21-42a2-ab23-ec5bd9972169}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Bench\Parser">
+      <UniqueIdentifier>{0c3a8063-c0ea-4a82-8677-03da2dd2f5f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Bench\Parser">
+      <UniqueIdentifier>{365b243a-3bc3-4e94-b866-3e1100567a41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scheme">
+      <UniqueIdentifier>{a3407afb-7981-489f-b4c3-30ee28254005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scheme">
+      <UniqueIdentifier>{beea15c3-0067-4ffb-b337-da0b257456cd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bench\Language\Definition.cpp">
+      <Filter>Source Files\Bench\Language</Filter>
+    </ClCompile>
+    <ClCompile Include="Bench\Language\Expression.cpp">
+      <Filter>Source Files\Bench\Language</Filter>
+    </ClCompile>
+    <ClCompile Include="Bench\Language\Identifier.cpp">
+      <Filter>Source Files\Bench\Language</Filter>
+    </ClCompile>
+    <ClCompile Include="Bench\Language\PortIO.cpp">
+      <Filter>Source Files\Bench\Language</Filter>
+    </ClCompile>
+    <ClCompile Include="Bench\Parser\Definition_parser.cpp">
+      <Filter>Source Files\Bench\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Bench\Parser\Expression_parser.cpp">
+      <Filter>Source Files\Bench\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Bench\Parser\Identifier_parser.cpp">
+      <Filter>Source Files\Bench\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Bench\Parser\PortIO_parser.cpp">
+      <Filter>Source Files\Bench\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Bench\Language\TextLine.cpp">
+      <Filter>Source Files\Bench\Language</Filter>
+    </ClCompile>
+    <ClCompile Include="Bench\Parser\TextLine_parser.cpp">
+      <Filter>Source Files\Bench\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Bench\Language\BenchFile.cpp">
+      <Filter>Source Files\Bench\Language</Filter>
+    </ClCompile>
+    <ClCompile Include="Bench\Parser\BenchFileParser.cpp">
+      <Filter>Source Files\Bench\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Bench\Parser\ParsingException.cpp">
+      <Filter>Source Files\Bench\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Scheme\Scheme.cpp">
+      <Filter>Source Files\Scheme</Filter>
+    </ClCompile>
+    <ClCompile Include="Scheme\SchemeConverter.cpp">
+      <Filter>Source Files\Scheme</Filter>
+    </ClCompile>
+    <ClCompile Include="Scheme\NodeDescription.cpp">
+      <Filter>Source Files\Scheme</Filter>
+    </ClCompile>
+    <ClCompile Include="Scheme\Binding.cpp">
+      <Filter>Source Files\Scheme</Filter>
+    </ClCompile>
+    <ClCompile Include="Scheme\SchemeValidator.cpp">
+      <Filter>Source Files\Scheme</Filter>
+    </ClCompile>
+    <ClCompile Include="Scheme\SchemeTransformer.cpp">
+      <Filter>Source Files\Scheme</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Bench\Language.h">
+      <Filter>Header Files\Bench</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Parser.h">
+      <Filter>Header Files\Bench</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Language\Definition.h">
+      <Filter>Header Files\Bench\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Language\Expression.h">
+      <Filter>Header Files\Bench\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Language\Identifier.h">
+      <Filter>Header Files\Bench\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Language\PortIO.h">
+      <Filter>Header Files\Bench\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Parser\Definition_parser.h">
+      <Filter>Header Files\Bench\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Parser\Expression_parser.h">
+      <Filter>Header Files\Bench\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Parser\Identifier_parser.h">
+      <Filter>Header Files\Bench\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Parser\PortIO_parser.h">
+      <Filter>Header Files\Bench\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Language\TextLine.h">
+      <Filter>Header Files\Bench\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Parser\TextLine_parser.h">
+      <Filter>Header Files\Bench\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Language\BenchFile.h">
+      <Filter>Header Files\Bench\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\IShowable.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Parser\BenchFileParser.h">
+      <Filter>Header Files\Bench\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Parser\ParsingException.h">
+      <Filter>Header Files\Bench\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Scheme\Scheme.h">
+      <Filter>Header Files\Scheme</Filter>
+    </ClInclude>
+    <ClInclude Include="Scheme\SchemeConverter.h">
+      <Filter>Header Files\Scheme</Filter>
+    </ClInclude>
+    <ClInclude Include="Scheme.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Language\NodeType.h">
+      <Filter>Header Files\Bench\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Scheme\NodeDescription.h">
+      <Filter>Header Files\Scheme</Filter>
+    </ClInclude>
+    <ClInclude Include="Scheme\Binding.h">
+      <Filter>Header Files\Scheme</Filter>
+    </ClInclude>
+    <ClInclude Include="Scheme\SchemeValidator.h">
+      <Filter>Header Files\Scheme</Filter>
+    </ClInclude>
+    <ClInclude Include="Scheme\SchemeTransformer.h">
+      <Filter>Header Files\Scheme</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
