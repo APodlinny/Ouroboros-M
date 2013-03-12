@@ -11,10 +11,9 @@ namespace Ouroboros { namespace Scheme
 
 	struct Scheme
 	{
-		std::vector<Binding> bindings;
 		std::vector<NodeDescription> nodeDescriptions;
-		std::vector<Identifier> primaryIOs;
-		std::vector<Binding> stateBindings;
+		std::vector<DescriptionReference> primaryIOs;
+		std::vector<DescriptionReference> stateIOs;
 
 		void Clear();
 	};

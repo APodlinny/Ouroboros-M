@@ -90,7 +90,6 @@
     <ClCompile Include="Bench\Parser\PortIO_parser.cpp" />
     <ClCompile Include="Bench\Parser\TextLine_parser.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Scheme\Binding.cpp" />
     <ClCompile Include="Scheme\NodeDescription.cpp" />
     <ClCompile Include="Scheme\Scheme.cpp" />
     <ClCompile Include="Scheme\SchemeConverter.cpp" />
@@ -118,7 +117,6 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="Common\IShowable.h" />
     <ClInclude Include="Scheme.h" />
-    <ClInclude Include="Scheme\Binding.h" />
     <ClInclude Include="Scheme\NodeDescription.h" />
     <ClInclude Include="Scheme\Scheme.h" />
     <ClInclude Include="Scheme\SchemeConverter.h" />

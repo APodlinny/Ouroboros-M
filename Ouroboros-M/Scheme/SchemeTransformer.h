@@ -8,8 +8,6 @@
 namespace Ouroboros { namespace Scheme 
 {
 
-	typedef std::vector<NodeDescription>::iterator DescriptionIterator; 
-
 	class SchemeTransformer
 	{
 	public:
@@ -17,10 +15,10 @@ namespace Ouroboros { namespace Scheme
 		static void DeafenStateOutputs(Scheme& scheme);
 
 	private:
-		static std::vector<DescriptionIterator> GetRecursionNodes(Scheme& scheme);
-		static void RemoveRecursion(Scheme& scheme, DescriptionIterator recursionNode);
+		static std::vector<DescriptionReference> GetRecursionNodes(Scheme& scheme);
+		static void RemoveRecursion(Scheme& scheme, DescriptionReference recursionNode);
 
-		static void DeafenStateOutput(Scheme& scheme, const Identifier& nonPrimaryNode);
+		static void DeafenStateOutput(Scheme& scheme, DescriptionReference nonPrimaryNode);
 	};
 
 }}

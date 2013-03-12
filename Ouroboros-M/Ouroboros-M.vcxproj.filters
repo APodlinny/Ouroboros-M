@@ -93,9 +93,6 @@
     <ClCompile Include="Scheme\NodeDescription.cpp">
       <Filter>Source Files\Scheme</Filter>
     </ClCompile>
-    <ClCompile Include="Scheme\Binding.cpp">
-      <Filter>Source Files\Scheme</Filter>
-    </ClCompile>
     <ClCompile Include="Scheme\SchemeValidator.cpp">
       <Filter>Source Files\Scheme</Filter>
     </ClCompile>
@@ -171,9 +168,6 @@
       <Filter>Header Files\Bench\Language</Filter>
     </ClInclude>
     <ClInclude Include="Scheme\NodeDescription.h">
-      <Filter>Header Files\Scheme</Filter>
-    </ClInclude>
-    <ClInclude Include="Scheme\Binding.h">
       <Filter>Header Files\Scheme</Filter>
     </ClInclude>
     <ClInclude Include="Scheme\SchemeValidator.h">

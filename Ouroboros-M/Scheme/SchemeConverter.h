@@ -17,18 +17,12 @@ namespace Ouroboros { namespace Scheme
 	public:
 		static void BenchToScheme(const BenchFile& bench, Scheme& scheme);
 		static void SchemeToBench(const Scheme& scheme, BenchFile& bench);
-
-		static const Identifier InputIdentifier;
-		static const Identifier OutputIdentifier;
-
-	private:
-		static void GetArgsById(const Identifier& identifier, std::vector<Identifier>& arguments);
 	};
 
-	class FillBindingsVisitor : public boost::static_visitor<>
+	class FillNodeDescriptionsVisitor : public boost::static_visitor<>
 	{
 	public:
-		FillBindingsVisitor(Scheme* scheme);
+		FillNodeDescriptionsVisitor(Scheme* scheme);
 
 		void operator()(Definition def) const;
 		void operator()(PortIO port) const;
@@ -37,10 +31,10 @@ namespace Ouroboros { namespace Scheme
 		Scheme* scheme;
 	};
 
-	class FillNodeDescriptionsVisitor : public boost::static_visitor<>
+	class FillNodeArgumentsVisitor : public boost::static_visitor<>
 	{
 	public:
-		FillNodeDescriptionsVisitor(Scheme* scheme);
+		FillNodeArgumentsVisitor(Scheme* scheme);
 
 		void operator()(Definition def) const;
 		void operator()(PortIO port) const;
