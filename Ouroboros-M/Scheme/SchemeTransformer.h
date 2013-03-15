@@ -12,13 +12,16 @@ namespace Ouroboros { namespace Scheme
 	{
 	public:
 		static void RemoveRecursions(Scheme& scheme);
-		static void DeafenStateOutputs(Scheme& scheme);
+		static void DeafenNonPrimaryOutputs(Scheme& scheme);
 
-	private:
+	//private:
 		static std::vector<DescriptionReference> GetRecursionNodes(Scheme& scheme);
 		static void RemoveRecursion(Scheme& scheme, DescriptionReference recursionNode);
 
-		static void DeafenStateOutput(Scheme& scheme, DescriptionReference nonPrimaryNode);
+		static void DeafenOutput(Scheme& scheme, DescriptionReference nonPrimaryNode);
+
+		static void IncrementIndices(Scheme& scheme);
+		static void AppendScheme(Scheme& schemeA, const Scheme& schemeB, const std::vector<StateBinding>& bindings);
 	};
 
 }}

@@ -6,5 +6,6 @@ void Scheme::Clear()
 {
 	nodeDescriptions.clear();
 	primaryIOs.clear();
-	stateIOs.clear();
+	nonPrimaryOutputs.clear();
+	stateBindings.clear();
 }

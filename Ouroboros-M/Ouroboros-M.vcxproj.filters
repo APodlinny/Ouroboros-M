@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Scheme">
       <UniqueIdentifier>{beea15c3-0067-4ffb-b337-da0b257456cd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Common">
+      <UniqueIdentifier>{215a8803-6fdc-4d29-aba1-de67432eea05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -98,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="Scheme\SchemeTransformer.cpp">
       <Filter>Source Files\Scheme</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Algorithm.cpp">
+      <Filter>Source Files\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -175,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="Scheme\SchemeTransformer.h">
       <Filter>Header Files\Scheme</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Algorithm.h">
+      <Filter>Header Files\Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

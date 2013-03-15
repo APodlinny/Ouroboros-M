@@ -89,6 +89,7 @@
     <ClCompile Include="Bench\Parser\ParsingException.cpp" />
     <ClCompile Include="Bench\Parser\PortIO_parser.cpp" />
     <ClCompile Include="Bench\Parser\TextLine_parser.cpp" />
+    <ClCompile Include="Common\Algorithm.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scheme\NodeDescription.cpp" />
     <ClCompile Include="Scheme\Scheme.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="Bench\Parser\PortIO_parser.h" />
     <ClInclude Include="Bench\Parser\TextLine_parser.h" />
     <ClInclude Include="Common.h" />
+    <ClInclude Include="Common\Algorithm.h" />
     <ClInclude Include="Common\IShowable.h" />
     <ClInclude Include="Scheme.h" />
     <ClInclude Include="Scheme\NodeDescription.h" />

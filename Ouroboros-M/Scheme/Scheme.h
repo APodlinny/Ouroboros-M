@@ -2,18 +2,21 @@
 #define SCHEME_SCHEME_H
 
 #include <vector>
+#include <tuple>
 
-#include "Binding.h"
 #include "NodeDescription.h"
 
 namespace Ouroboros { namespace Scheme
 {
 
+	typedef std::pair<DescriptionReference, DescriptionReference> StateBinding;
+
 	struct Scheme
 	{
 		std::vector<NodeDescription> nodeDescriptions;
 		std::vector<DescriptionReference> primaryIOs;
-		std::vector<DescriptionReference> stateIOs;
+		std::vector<DescriptionReference> nonPrimaryOutputs;
+		std::vector<StateBinding> stateBindings;
 
 		void Clear();
 	};
