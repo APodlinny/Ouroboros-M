@@ -1,10 +1,15 @@
 #include "BenchFileParser.h"
+#include "..\..\Common.h"
 #include <algorithm>
 
 using namespace Ouroboros::Bench::Parser;
+using namespace Ouroboros::Common;
 
 void BenchFileParser::FromStream(std::istream& stream, BenchFile& destination)
 {
+	Logger::ostream() << "Parsing bench file. ";
+	Timer t;
+
 	destination.lines.clear();
 
 	for (unsigned currentLineNum = 1; !stream.eof(); currentLineNum++)
@@ -24,6 +29,8 @@ void BenchFileParser::FromStream(std::istream& stream, BenchFile& destination)
 				throw ParsingException(std::string("Parsing error"), currentLineNum);
 		}
 	}
+
+	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }
 
 void BenchFileParser::FromString(const std::string& string, BenchFile& destination)

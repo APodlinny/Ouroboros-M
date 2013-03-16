@@ -14,7 +14,7 @@ namespace Ouroboros { namespace Scheme
 		static void RemoveRecursions(Scheme& scheme);
 		static void DeafenNonPrimaryOutputs(Scheme& scheme);
 
-	//private:
+	private:
 		static std::vector<DescriptionReference> GetRecursionNodes(Scheme& scheme);
 		static void RemoveRecursion(Scheme& scheme, DescriptionReference recursionNode);
 

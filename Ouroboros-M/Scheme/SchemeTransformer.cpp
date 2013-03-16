@@ -2,9 +2,13 @@
 #include "..\Common.h"
 
 using namespace Ouroboros::Scheme;
+using namespace Ouroboros::Common;
 
 void SchemeTransformer::RemoveRecursions(Scheme& scheme)
 {
+	Logger::ostream() << "Removing recursions. ";
+	Timer t;
+
 	std::vector<DescriptionReference> recNodes = GetRecursionNodes(scheme);
 
 	scheme.stateBindings.clear();
@@ -12,6 +16,8 @@ void SchemeTransformer::RemoveRecursions(Scheme& scheme)
 	{
 		RemoveRecursion(scheme, recNodes[i]);
 	}
+
+	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }
 
 void SchemeTransformer::RemoveRecursion(Scheme& scheme, DescriptionReference recursionNode)
@@ -61,6 +67,9 @@ std::vector<DescriptionReference> SchemeTransformer::GetRecursionNodes(Scheme& s
 
 void SchemeTransformer::DeafenNonPrimaryOutputs(Scheme& scheme)
 {
+	Logger::ostream() << "Deafening non-primary outputs. ";
+	Timer t;
+
 	// deafening state outputs
 	for (std::vector<StateBinding>::iterator i = scheme.stateBindings.begin();
 		i != scheme.stateBindings.end(); 
@@ -76,6 +85,8 @@ void SchemeTransformer::DeafenNonPrimaryOutputs(Scheme& scheme)
 	{
 		DeafenOutput(scheme, *i);
 	}
+
+	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }
 
 void SchemeTransformer::DeafenOutput(Scheme& scheme, DescriptionReference nonPrimaryNode)

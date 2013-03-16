@@ -1,10 +1,14 @@
 #include "SchemeConverter.h"
-#include <boost\lambda\lambda.hpp>
+#include "..\Common.h"
 
 using namespace Ouroboros::Scheme;
+using namespace Ouroboros::Common;
 
 void SchemeConverter::BenchToScheme(const BenchFile& bench, Scheme& scheme)
 {
+	Logger::ostream() << "Converting bench file to scheme. ";
+	Timer t;
+
 	scheme.Clear();
 
 	FillNodeDescriptionsVisitor descriptionsVisitor(&scheme);
@@ -12,11 +16,14 @@ void SchemeConverter::BenchToScheme(const BenchFile& bench, Scheme& scheme)
 	for (unsigned i = 0; i < bench.lines.size(); i++)
 		boost::apply_visitor(descriptionsVisitor, bench.lines[i].textLine);
 
-	SchemeValidator::Validate(scheme);
+	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }
 
 void SchemeConverter::SchemeToBench(const Scheme& scheme, BenchFile& bench)
 {
+	Logger::ostream() << "Converting scheme to bench file. ";
+	Timer t;
+
 	bench.Clear();
 
 	for (std::vector<NodeDescription>::const_iterator node = scheme.nodeDescriptions.begin(); 
@@ -45,6 +52,8 @@ void SchemeConverter::SchemeToBench(const Scheme& scheme, BenchFile& bench)
 			bench.lines.push_back(TextLine(def));
 		}
 	}
+
+	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }
 
 FillNodeDescriptionsVisitor::FillNodeDescriptionsVisitor(Scheme* scheme)

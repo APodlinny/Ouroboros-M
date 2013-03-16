@@ -17,12 +17,9 @@ int main()
 	BenchFile dest;
 	Scheme scheme;
 
-	clock_t start, end;
 	clock_t totalStart, totalEnd;
 
 	totalStart = clock();
-	start = clock();
-	std::cout << "Parsing file" << std::endl;
 	try
 	{
 		BenchFileParser::FromFile("D:/test.ben", dest);
@@ -32,22 +29,11 @@ int main()
 		std::cout << e.what();
 		return -1;
 	}
-	end = clock();
-	std::cout << "Time: " << (end-start)/(double)CLOCKS_PER_SEC << std::endl;
 
-	start = clock();
-	std::cout << "Converting to scheme" << std::endl;
 	SchemeConverter::BenchToScheme(dest, scheme);
-	end = clock();
-	std::cout << "Time: " << (end-start)/(double)CLOCKS_PER_SEC << std::endl;
-
-	start = clock();
-	std::cout << "Removing recursions" << std::endl;
 	SchemeTransformer::RemoveRecursions(scheme);
-	end = clock();
-	std::cout << "Time: " << (end-start)/(double)CLOCKS_PER_SEC << std::endl;
 
-	start = clock();
+	/*start = clock();
 	std::cout << "Making a copy" << std::endl;
 	Scheme copy = scheme;
 	SchemeTransformer::IncrementIndices(copy);
@@ -69,32 +55,21 @@ int main()
 	end = clock();
 	std::cout << "Time: " << (end-start)/(double)CLOCKS_PER_SEC << std::endl;
 
-	start = clock();
-	std::cout << "Deafening non-primary outputs" << std::endl;
 	Scheme result = scheme;
-	SchemeTransformer::DeafenNonPrimaryOutputs(result);
-	end = clock();
-	std::cout << "Time: " << (end-start)/(double)CLOCKS_PER_SEC << std::endl;
+	SchemeTransformer::DeafenNonPrimaryOutputs(result);*/
 
-	start = clock();
-	std::cout << "Converting from scheme" << std::endl;
-	SchemeConverter::SchemeToBench(result, dest);
-	end = clock();
-	std::cout << "Time: " << (end-start)/(double)CLOCKS_PER_SEC << std::endl;
 
-	start = clock();
-	std::cout << "Printing to output stream" << std::endl;
+	SchemeConverter::SchemeToBench(scheme, dest);
+
 
 
 	std::ofstream file;
 	file.open("d:/output.ben", std::ofstream::out);
 	dest.print(file);
 	file.close();
-	end = clock();
-	std::cout << "Time: " << (end-start)/(double)CLOCKS_PER_SEC << std::endl;
 
 	////////
-	start = clock();
+	/*start = clock();
 	std::cout << "Making a copy" << std::endl;
 	SchemeTransformer::IncrementIndices(copy);
 	bindings.clear();
@@ -122,21 +97,12 @@ int main()
 	end = clock();
 	std::cout << "Time: " << (end-start)/(double)CLOCKS_PER_SEC << std::endl;
 
-	start = clock();
-	std::cout << "Converting from scheme" << std::endl;
+
 	SchemeConverter::SchemeToBench(result, dest);
-	end = clock();
-	std::cout << "Time: " << (end-start)/(double)CLOCKS_PER_SEC << std::endl;
-
-	start = clock();
-	std::cout << "Printing to output stream" << std::endl;
-
 
 	file.open("d:/output.ben", std::ofstream::out);
 	dest.print(file);
-	file.close();
-	end = clock();
-	std::cout << "Time: " << (end-start)/(double)CLOCKS_PER_SEC << std::endl;
+	file.close();*/
 	////////
 
 	totalEnd = clock();

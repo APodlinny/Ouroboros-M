@@ -90,6 +90,9 @@
     <ClCompile Include="Bench\Parser\PortIO_parser.cpp" />
     <ClCompile Include="Bench\Parser\TextLine_parser.cpp" />
     <ClCompile Include="Common\Algorithm.cpp" />
+    <ClCompile Include="Common\Logger.cpp" />
+    <ClCompile Include="Common\Settings.cpp" />
+    <ClCompile Include="Common\Timer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scheme\NodeDescription.cpp" />
     <ClCompile Include="Scheme\Scheme.cpp" />
@@ -118,6 +121,9 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="Common\Algorithm.h" />
     <ClInclude Include="Common\IShowable.h" />
+    <ClInclude Include="Common\Logger.h" />
+    <ClInclude Include="Common\Settings.h" />
+    <ClInclude Include="Common\Timer.h" />
     <ClInclude Include="Scheme.h" />
     <ClInclude Include="Scheme\NodeDescription.h" />
     <ClInclude Include="Scheme\Scheme.h" />
