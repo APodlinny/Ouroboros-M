@@ -3,6 +3,7 @@
 
 #include "Scheme.h"
 #include "SchemeConverter.h"
+#include "SchemeCopier.h"
 #include <vector>
 
 namespace Ouroboros { namespace Scheme 
@@ -11,6 +12,8 @@ namespace Ouroboros { namespace Scheme
 	class SchemeTransformer
 	{
 	public:
+		friend class SchemeCopier;
+
 		static void RemoveRecursions(Scheme& scheme);
 		static void DeafenNonPrimaryOutputs(Scheme& scheme);
 

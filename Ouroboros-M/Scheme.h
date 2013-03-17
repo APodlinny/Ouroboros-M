@@ -3,8 +3,7 @@
 
 #include "Scheme\Scheme.h"
 #include "Scheme\SchemeConverter.h"
-//#include "Scheme\Binding.h"
-//#include "Scheme\NodeDescription.h"
 #include "Scheme\SchemeTransformer.h"
+#include "Scheme\SchemeCopier.h"
 
 #endif // SHCEME_H

@@ -97,6 +97,7 @@
     <ClCompile Include="Scheme\NodeDescription.cpp" />
     <ClCompile Include="Scheme\Scheme.cpp" />
     <ClCompile Include="Scheme\SchemeConverter.cpp" />
+    <ClCompile Include="Scheme\SchemeCopier.cpp" />
     <ClCompile Include="Scheme\SchemeTransformer.cpp" />
     <ClCompile Include="Scheme\SchemeValidator.cpp" />
   </ItemGroup>
@@ -128,6 +129,7 @@
     <ClInclude Include="Scheme\NodeDescription.h" />
     <ClInclude Include="Scheme\Scheme.h" />
     <ClInclude Include="Scheme\SchemeConverter.h" />
+    <ClInclude Include="Scheme\SchemeCopier.h" />
     <ClInclude Include="Scheme\SchemeTransformer.h" />
     <ClInclude Include="Scheme\SchemeValidator.h" />
   </ItemGroup>
