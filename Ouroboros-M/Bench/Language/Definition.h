@@ -4,7 +4,7 @@
 #include <string>
 #include <boost/fusion/include/adapt_struct.hpp>
 
-#include "..\..\Common.h"
+#include "../../Common.h"
 #include "Expression.h"
 #include "Identifier.h"
 

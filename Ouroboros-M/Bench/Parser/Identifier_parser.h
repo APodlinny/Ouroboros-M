@@ -8,7 +8,7 @@
 #include <boost/spirit/include/phoenix_stl.hpp>
 #include <boost/spirit/include/phoenix_object.hpp>
 
-#include "..\Language\Identifier.h"
+#include "../Language/Identifier.h"
 
 using namespace Ouroboros::Bench::Language;
 namespace qi = boost::spirit::qi;

@@ -1,13 +1,13 @@
 #ifndef BENCH_TEXTLINE_H
 #define BENCH_TEXTLINE_H
 
-#include <boost\variant.hpp>
+#include <boost/variant.hpp>
 
 #include <string>
 #include <iostream>
 #include <boost/fusion/include/adapt_struct.hpp>
 
-#include "..\..\Common.h"
+#include "../../Common.h"
 #include "PortIO.h"
 #include "Definition.h"
 

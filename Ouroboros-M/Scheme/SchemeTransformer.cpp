@@ -1,5 +1,5 @@
 #include "SchemeTransformer.h"
-#include "..\Common.h"
+#include "../Common.h"
 
 using namespace Ouroboros::Scheme;
 using namespace Ouroboros::Common;
@@ -113,12 +113,14 @@ void SchemeTransformer::DeafenOutput(Scheme& scheme, DescriptionReference nonPri
 
 void SchemeTransformer::IncrementIndices(Scheme& scheme)
 {
+	// incrementing indices for nodes
 	for (std::vector<NodeDescription>::iterator node = scheme.nodeDescriptions.begin();
 		node != scheme.nodeDescriptions.end();
 		node++)
 	{
 		node->nodeName.id++;
 
+		// incrementing indices for nodes' arguments
 		for (std::vector<Identifier>::iterator argument = node->arguments.begin();
 			argument != node->arguments.end();
 			argument++)
@@ -126,10 +128,28 @@ void SchemeTransformer::IncrementIndices(Scheme& scheme)
 			argument->id++;
 		}
 	}
+
+	for (std::vector<FaultDescription>::iterator faultDesc = scheme.faultDescriptions.begin();
+		faultDesc != scheme.faultDescriptions.end();
+		faultDesc++)
+	{
+		faultDesc->nodeName.id++;
+		
+		if (faultDesc->destinationName.is_initialized())
+			faultDesc->destinationName.get().id++;
+	}
 }
 
 void SchemeTransformer::AppendScheme(Scheme& schemeA, const Scheme& schemeB, const std::vector<StateBinding>& bindings)
 {
+	// concatenating scheme faults lists
+	for (std::vector<FaultDescription>::const_iterator faultDesc = schemeB.faultDescriptions.begin();
+		faultDesc != schemeB.faultDescriptions.end();
+		faultDesc++)
+	{
+		schemeA.faultDescriptions.push_back(*faultDesc);
+	}
+
 	// forming state bindings for result scheme
 	std::vector<StateBinding> newBindings;
 

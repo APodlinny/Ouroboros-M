@@ -1,9 +1,9 @@
 #ifndef SCHEME_SCHEMECONVERTER_H
 #define SCHEME_SCHEMECONVERTER_H
 
-#include <boost\variant.hpp>
+#include <boost/variant.hpp>
 
-#include "..\Bench.h"
+#include "../Bench.h"
 #include "Scheme.h"
 #include "SchemeValidator.h"
 

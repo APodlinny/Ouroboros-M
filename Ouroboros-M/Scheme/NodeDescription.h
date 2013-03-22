@@ -2,7 +2,7 @@
 #define SHCEME_NODEDESCRIPTION_H
 
 #include <vector>
-#include "..\Bench.h"
+#include "../Bench.h"
 using namespace Ouroboros::Bench::Language;
 
 namespace Ouroboros { namespace Scheme

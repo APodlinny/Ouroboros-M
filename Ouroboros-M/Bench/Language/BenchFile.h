@@ -5,21 +5,25 @@
 #include <vector>
 #include <ostream>
 
-#include "..\..\Common.h"
+#include "../../Common.h"
 #include "TextLine.h"
+
+using Ouroboros::Common::IShowable;
+using Ouroboros::Common::TextLineStorage;
 
 namespace Ouroboros { namespace Bench { namespace Language
 {
 
-	class BenchFile : public IShowable
+	class BenchFile : public IShowable, public TextLineStorage<TextLine>
 	{
 	public:
 		std::vector<TextLine> lines;
 
-		void Clear();
-
 		virtual std::string ToString();
 		virtual void print(std::ostream& os);
+
+		virtual void AddTextLine(TextLine textLine);
+		virtual void Clear();
 	};
 
 }}}

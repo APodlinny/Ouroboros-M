@@ -6,7 +6,7 @@
 #include <ostream>
 #include <boost/fusion/include/adapt_struct.hpp>
 
-#include "..\..\Common.h"
+#include "../../Common.h"
 #include "Identifier.h"
 #include "NodeType.h"
 

@@ -5,27 +5,22 @@
 #include <fstream>
 #include <boost/spirit/include/qi.hpp>
 
-#include "..\Language.h"
+#include "../../Common.h"
+#include "../Language.h"
 #include "TextLine_parser.h"
-#include "ParsingException.h"
+#include "TextLineParser.h"
 
 using namespace Ouroboros::Bench::Language;
+using namespace Ouroboros::Common;
 
 namespace Ouroboros { namespace Bench { namespace Parser
 {
 
-	class BenchFileParser
+	class BenchFileParser : public GenericFileParser<TextLine, BenchFile, TextLineParser>
 	{
 	public:
-		static void FromStream(std::istream& stream, BenchFile& destination);
-		static void FromString(const std::string& string, BenchFile& destination);
-		static void FromFile(const std::string& filename, BenchFile& destination);
-
-	private:
-		static bool IsEmptyOrComment(const std::string& line);
-		static std::string& DeleteComment(std::string& line);
-
-		static bool ParseTextLine(const std::string& parsedLine, TextLine& destination);
+		void FromStream(std::istream& stream, BenchFile& destination);
+		void FromString(const std::string& string, BenchFile& destination);
 	};
 
 }}}

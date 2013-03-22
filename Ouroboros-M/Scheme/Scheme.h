@@ -5,6 +5,9 @@
 #include <tuple>
 
 #include "NodeDescription.h"
+#include "../Faults/Language.h"
+
+using namespace Ouroboros::Faults::Language;
 
 namespace Ouroboros { namespace Scheme
 {
@@ -17,6 +20,8 @@ namespace Ouroboros { namespace Scheme
 		std::vector<DescriptionReference> primaryIOs;
 		std::vector<DescriptionReference> nonPrimaryOutputs;
 		std::vector<StateBinding> stateBindings;
+
+		std::vector<FaultDescription> faultDescriptions;
 
 		void Clear();
 	};

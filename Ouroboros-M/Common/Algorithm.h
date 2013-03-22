@@ -2,54 +2,73 @@
 #define COMMON_ALGORITHM_H
 
 #include <algorithm>
+#include <vector>
 
 namespace Ouroboros { namespace Common
 {
-
-	template<class IteratorType>
-	IteratorType remove_by_index(IteratorType first, IteratorType last, unsigned index)
+	
+	template<typename Iterator>
+	struct IteratorRange
 	{
-		IteratorType result = first;
-		IteratorType begin = first;
+		Iterator from;
+		Iterator to;
+	};
 
-		while (first != last)
+	template<typename K, typename V>
+	struct Selector
+	{
+		virtual V operator()(const K& key)
 		{
-			if ((first - begin) != index)
-			{
-				*result = *first;
-				result++;
-			}
+			return V();
+		}
+	};
 
-			first++;
+	template<typename K, typename V>
+	struct SelectorComparer
+	{
+		Selector<K, V>& f;
+
+		SelectorComparer(Selector<K, V>& _f) : f(_f) {}
+
+		bool operator()(K a, K b)
+		{
+			return f(a) < f(b);
+		}
+	};
+
+	template<typename Iterator, typename K, typename V, typename S>
+	std::vector<IteratorRange<Iterator>> group_by(Iterator begin, Iterator end, S selector)
+	{
+		SelectorComparer<K, V> comp(selector);
+		std::vector<IteratorRange<Iterator>> result;
+		std::vector<K> v;
+
+		std::sort(begin, end, comp);
+		
+		IteratorRange<Iterator> range;
+		Iterator current = begin;
+
+		range.from = begin;
+
+		for (Iterator ref = begin;
+			ref != end;
+			ref++)
+		{
+			if (selector(*ref) != selector(*current))
+			{
+				current = ref;
+
+				range.to = ref;
+				result.push_back(range);
+
+				range.from = ref;
+			}
 		}
 
-		return result;
-	}
-
-	template<class ElemIterator>
-	ElemIterator remove_by_values(ElemIterator elemFirst, ElemIterator elemLast, ElemIterator indexFirst, ElemIterator indexLast)
-	{
-		ElemIterator result = elemFirst;
-		ElemIterator begin = elemFirst;
-
-		while (elemFirst != elemLast)
-		{
-			if (!contains(indexFirst, indexLast, *elemFirst))
-			{
-				*result = *elemFirst;
-				result++;
-			}
-
-			elemFirst++;
-		}
+		range.to = end;
+		result.push_back(range);
 
 		return result;
-	}
-
-	template<class IteratorType, class ElementType>
-	bool contains(IteratorType first, IteratorType last, const ElementType& value)
-	{
-		return last != std::find(first, last, value);
 	}
 
 }}

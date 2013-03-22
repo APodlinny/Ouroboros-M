@@ -8,9 +8,9 @@
 #include <boost/spirit/include/phoenix_stl.hpp>
 #include <boost/spirit/include/phoenix_object.hpp>
 
-#include "..\Language\Identifier.h"
-#include "..\Language\Expression.h"
-#include "..\Language\Definition.h"
+#include "../Language/Identifier.h"
+#include "../Language/Expression.h"
+#include "../Language/Definition.h"
 #include "Identifier_parser.h"
 #include "Expression_parser.h"
 

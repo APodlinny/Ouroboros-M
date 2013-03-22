@@ -4,7 +4,7 @@
 #include <exception>
 #include <string>
 
-namespace Ouroboros { namespace Bench { namespace Parser
+namespace Ouroboros { namespace Common
 {
 
 	class ParsingException : std::exception
@@ -22,6 +22,6 @@ namespace Ouroboros { namespace Bench { namespace Parser
 		char* StringToBuffer(std::string& string) const throw();
 	};
 
-}}}
+}}
 
 #endif // BENCH_PARSING_EXCEPTION_H

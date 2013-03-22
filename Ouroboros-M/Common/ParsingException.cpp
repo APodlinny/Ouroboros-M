@@ -1,8 +1,8 @@
 #include "ParsingException.h"
 
-#include <boost\format.hpp>
+#include <boost/format.hpp>
 
-using namespace Ouroboros::Bench::Parser;
+using namespace Ouroboros::Common;
 
 ParsingException::ParsingException()
 {

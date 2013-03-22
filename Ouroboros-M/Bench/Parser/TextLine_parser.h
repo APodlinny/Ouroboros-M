@@ -8,7 +8,7 @@
 #include <boost/spirit/include/phoenix_stl.hpp>
 #include <boost/spirit/include/phoenix_object.hpp>
 
-#include "..\Language\TextLine.h"
+#include "../Language/TextLine.h"
 #include "Definition_parser.h"
 #include "PortIO_parser.h"
 

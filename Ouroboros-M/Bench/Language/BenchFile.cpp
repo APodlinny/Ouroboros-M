@@ -1,13 +1,8 @@
 #include "BenchFile.h"
-#include "..\..\Common.h"
+#include "../../Common.h"
 
 using namespace Ouroboros::Bench::Language;
 using namespace Ouroboros::Common;
-
-void BenchFile::Clear()
-{
-	lines.clear();
-}
 
 std::string BenchFile::ToString()
 {
@@ -32,4 +27,14 @@ void BenchFile::print(std::ostream& os)
 		lines[i].print(os);
 
 	Logger::ostream() << "Time: " << t.GetTime() << "\n";
+}
+
+void BenchFile::AddTextLine(TextLine textLine)
+{
+	lines.push_back(textLine);
+}
+
+void BenchFile::Clear()
+{
+	lines.clear();
 }

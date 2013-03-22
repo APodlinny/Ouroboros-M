@@ -43,6 +43,48 @@
     <Filter Include="Source Files\Common">
       <UniqueIdentifier>{215a8803-6fdc-4d29-aba1-de67432eea05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Faults">
+      <UniqueIdentifier>{50e6a1ca-d798-4f6d-a5bd-0b68164640ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Faults\Language">
+      <UniqueIdentifier>{a3f69540-0803-48f5-bf7d-df686cca0afa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Faults\Parser">
+      <UniqueIdentifier>{d53aae96-0bbb-4aec-bb28-c5f09aba0cec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Faults">
+      <UniqueIdentifier>{7630efc6-cb24-434e-83e8-b3f65a2894d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Faults\Language">
+      <UniqueIdentifier>{29b5639d-b32c-4aae-a896-a1fed3abde51}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Faults\Parser">
+      <UniqueIdentifier>{3dcdc964-10a1-4350-9e97-310a53682b2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tests">
+      <UniqueIdentifier>{20843b5c-1f45-476e-a38d-dc733a0d2f16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tests\Algorithm">
+      <UniqueIdentifier>{7019aaf7-fb39-40c5-a40f-d31727162c05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tests\Parser">
+      <UniqueIdentifier>{995de651-3e04-450d-adf8-2b663ce6b5e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tests\Language">
+      <UniqueIdentifier>{f5e3c72d-8d4a-42d2-80d8-72e5d8df6988}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tests">
+      <UniqueIdentifier>{beaafa49-5a25-47e5-894c-d70a47db3649}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tests\Language">
+      <UniqueIdentifier>{64d5f69a-c469-4c84-b792-a89da41055dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tests\Parser">
+      <UniqueIdentifier>{47dc883e-0992-450d-93b9-b4b652b9f5a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tests\Algorithm">
+      <UniqueIdentifier>{2142458b-77be-4d3c-ba9c-84c0c4a4e876}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -84,9 +126,6 @@
     <ClCompile Include="Bench\Parser\BenchFileParser.cpp">
       <Filter>Source Files\Bench\Parser</Filter>
     </ClCompile>
-    <ClCompile Include="Bench\Parser\ParsingException.cpp">
-      <Filter>Source Files\Bench\Parser</Filter>
-    </ClCompile>
     <ClCompile Include="Scheme\Scheme.cpp">
       <Filter>Source Files\Scheme</Filter>
     </ClCompile>
@@ -116,6 +155,51 @@
     </ClCompile>
     <ClCompile Include="Scheme\SchemeCopier.cpp">
       <Filter>Source Files\Scheme</Filter>
+    </ClCompile>
+    <ClCompile Include="Faults\Language\FaultDescription.cpp">
+      <Filter>Source Files\Faults\Language</Filter>
+    </ClCompile>
+    <ClCompile Include="Bench\Parser\TextLineParser.cpp">
+      <Filter>Source Files\Bench\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Faults\Parser\FaultDescription_parser.cpp">
+      <Filter>Source Files\Faults\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Faults\Parser\FaultDescriptionParser.cpp">
+      <Filter>Source Files\Faults\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Faults\Language\FaultsFile.cpp">
+      <Filter>Source Files\Faults\Language</Filter>
+    </ClCompile>
+    <ClCompile Include="Faults\Parser\FaultsFileParser.cpp">
+      <Filter>Source Files\Faults\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\ParsingException.cpp">
+      <Filter>Source Files\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Language\TestDescription.cpp">
+      <Filter>Source Files\Tests\Language</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Language\TestsGroup.cpp">
+      <Filter>Source Files\Tests\Language</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Language\TestsCollection.cpp">
+      <Filter>Source Files\Tests\Language</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Algorithm\TestsTransformer.cpp">
+      <Filter>Source Files\Tests\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Language\TestsFile.cpp">
+      <Filter>Source Files\Tests\Language</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Parser\TestDescription_parser.cpp">
+      <Filter>Source Files\Tests\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Parser\TestsTextLine_parser.cpp">
+      <Filter>Source Files\Tests\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Parser\TestsTextLineParser.cpp">
+      <Filter>Source Files\Tests\Parser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -170,9 +254,6 @@
     <ClInclude Include="Bench\Parser\BenchFileParser.h">
       <Filter>Header Files\Bench\Parser</Filter>
     </ClInclude>
-    <ClInclude Include="Bench\Parser\ParsingException.h">
-      <Filter>Header Files\Bench\Parser</Filter>
-    </ClInclude>
     <ClInclude Include="Scheme\Scheme.h">
       <Filter>Header Files\Scheme</Filter>
     </ClInclude>
@@ -208,6 +289,87 @@
     </ClInclude>
     <ClInclude Include="Scheme\SchemeCopier.h">
       <Filter>Header Files\Scheme</Filter>
+    </ClInclude>
+    <ClInclude Include="Faults.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Faults\Language.h">
+      <Filter>Header Files\Faults</Filter>
+    </ClInclude>
+    <ClInclude Include="Faults\Parser.h">
+      <Filter>Header Files\Faults</Filter>
+    </ClInclude>
+    <ClInclude Include="Faults\Language\FaultDescription.h">
+      <Filter>Header Files\Faults\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Faults\Language\FaultType.h">
+      <Filter>Header Files\Faults\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\TextLineStorage.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\GenericTextLineParser.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Bench\Parser\TextLineParser.h">
+      <Filter>Header Files\Bench\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\GenericFileParser.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Faults\Parser\FaultDescription_parser.h">
+      <Filter>Header Files\Faults\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Faults\Parser\FaultDescriptionParser.h">
+      <Filter>Header Files\Faults\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Faults\Language\FaultsFile.h">
+      <Filter>Header Files\Faults\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Faults\Parser\FaultsFileParser.h">
+      <Filter>Header Files\Faults\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\ParsingException.h">
+      <Filter>Header Files\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Algorithm.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Language.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Parser.h">
+      <Filter>Header Files\Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Language\TestsGroup.h">
+      <Filter>Header Files\Tests\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Language\TestDescription.h">
+      <Filter>Header Files\Tests\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Language\TestsCollection.h">
+      <Filter>Header Files\Tests\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Algorithm\TestsTransformer.h">
+      <Filter>Header Files\Tests\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Language\TestsTextLine.h">
+      <Filter>Header Files\Tests\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Language\TestsFile.h">
+      <Filter>Header Files\Tests\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Parser\TestDescription_parser.h">
+      <Filter>Header Files\Tests\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Parser\TestsTextLine_parser.h">
+      <Filter>Header Files\Tests\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Parser\TestsTextLineParser.h">
+      <Filter>Header Files\Tests\Parser</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

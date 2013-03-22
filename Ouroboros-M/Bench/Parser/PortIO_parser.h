@@ -8,9 +8,9 @@
 #include <boost/spirit/include/phoenix_stl.hpp>
 #include <boost/spirit/include/phoenix_object.hpp>
 
-#include "..\Language\Identifier.h"
-#include "..\Language\PortIO.h"
-#include "..\Language\NodeType.h"
+#include "../Language/Identifier.h"
+#include "../Language/PortIO.h"
+#include "../Language/NodeType.h"
 #include "Identifier_parser.h"
 
 using namespace Ouroboros::Bench::Language;
