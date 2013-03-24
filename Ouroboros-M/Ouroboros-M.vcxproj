@@ -106,12 +106,14 @@
     <ClCompile Include="Scheme\SchemeCopier.cpp" />
     <ClCompile Include="Scheme\SchemeTransformer.cpp" />
     <ClCompile Include="Scheme\SchemeValidator.cpp" />
+    <ClCompile Include="Tests\Algorithm\TestsConverter.cpp" />
     <ClCompile Include="Tests\Algorithm\TestsTransformer.cpp" />
     <ClCompile Include="Tests\Language\TestDescription.cpp" />
     <ClCompile Include="Tests\Language\TestsCollection.cpp" />
     <ClCompile Include="Tests\Language\TestsFile.cpp" />
     <ClCompile Include="Tests\Language\TestsGroup.cpp" />
     <ClCompile Include="Tests\Parser\TestDescription_parser.cpp" />
+    <ClCompile Include="Tests\Parser\TestsFileParser.cpp" />
     <ClCompile Include="Tests\Parser\TestsTextLineParser.cpp" />
     <ClCompile Include="Tests\Parser\TestsTextLine_parser.cpp" />
   </ItemGroup>
@@ -161,6 +163,7 @@
     <ClInclude Include="Scheme\SchemeValidator.h" />
     <ClInclude Include="Tests.h" />
     <ClInclude Include="Tests\Algorithm.h" />
+    <ClInclude Include="Tests\Algorithm\TestsConverter.h" />
     <ClInclude Include="Tests\Algorithm\TestsTransformer.h" />
     <ClInclude Include="Tests\Language.h" />
     <ClInclude Include="Tests\Language\TestDescription.h" />
@@ -170,6 +173,7 @@
     <ClInclude Include="Tests\Language\TestsTextLine.h" />
     <ClInclude Include="Tests\Parser.h" />
     <ClInclude Include="Tests\Parser\TestDescription_parser.h" />
+    <ClInclude Include="Tests\Parser\TestsFileParser.h" />
     <ClInclude Include="Tests\Parser\TestsTextLineParser.h" />
     <ClInclude Include="Tests\Parser\TestsTextLine_parser.h" />
   </ItemGroup>

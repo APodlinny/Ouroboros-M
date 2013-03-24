@@ -201,6 +201,12 @@
     <ClCompile Include="Tests\Parser\TestsTextLineParser.cpp">
       <Filter>Source Files\Tests\Parser</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\Parser\TestsFileParser.cpp">
+      <Filter>Source Files\Tests\Parser</Filter>
+    </ClCompile>
+    <ClCompile Include="Tests\Algorithm\TestsConverter.cpp">
+      <Filter>Source Files\Tests\Algorithm</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bench\Language.h">
@@ -370,6 +376,12 @@
     </ClInclude>
     <ClInclude Include="Tests\Parser\TestsTextLineParser.h">
       <Filter>Header Files\Tests\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Parser\TestsFileParser.h">
+      <Filter>Header Files\Tests\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Algorithm\TestsConverter.h">
+      <Filter>Header Files\Tests\Algorithm</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

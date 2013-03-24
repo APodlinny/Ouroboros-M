@@ -100,6 +100,7 @@ int main()
 
 	totalEnd = clock();
 	std::cout << std::endl << "Total time: " << (totalEnd-totalStart)/(double)CLOCKS_PER_SEC << std::endl;*/
+
 	/*namespace qi = boost::spirit::qi;
 
 	using qi::int_;
@@ -122,28 +123,18 @@ int main()
 	//bool r = qi::phrase_parse(begin, end, omit[*int_] >> ": " >> lexeme[+char_("01x") >> " " >> +char_("01x")], space, dest);
 	bool r = qi::phrase_parse(begin, end, parser, space, dest);*/
 
-	TextLineParser parser;
-	TestsTextLine line;
+	TestsFile dest;
+	TestsCollection collection;
+	TestsFileParser fileParser;
 
-	bool r = parser.ParseLine("  G2{1} G3{1} G0{2} G1{2} G2{2} G3{2} ", line);
+	std::ifstream input;
+	input.open("d:/output.test", std::ifstream::in);
+	fileParser.FromStream(input, dest);
+	input.close();
 
-	try
-	{
-		TestDescription test = boost::get<TestDescription>(line.textLine);
-		test.print(std::cout);
-	}
-	catch (...)
-	{
-		try
-		{
-			FaultDescription fault = boost::get<FaultDescription>(line.textLine);
-			fault.print(std::cout);
-		}
-		catch (...)
-		{
-			std::cout << "Nothing";
-		}
-	}
+	TestsConverter::FromFile(dest, collection);
+
+	collection.print(std::cout);
 
 	return 0;
 }
