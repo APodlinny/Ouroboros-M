@@ -1,7 +1,8 @@
-#ifndef FAULTS_H
-#define FAULTS_H
+#ifndef OUROBOROS_FAULTS_H
+#define OUROBOROS_FAULTS_H
 
 #include "Faults/Language.h"
 #include "Faults/Parser.h"
+#include "Faults/Algorithm.h"
 
-#endif // FAULTS_H
+#endif // OUROBOROS_FAULTS_H

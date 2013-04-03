@@ -8,11 +8,11 @@ using namespace Ouroboros::Bench::Language;
 namespace Ouroboros { namespace Scheme
 {
 
+	// Scheme node description. Consists of node name (corresponding gate name), node type (corresponding boolean expression type) and list of arguments (gates names)
 	struct NodeDescription
 	{
 		NodeType::NodeTypeEnum nodeType;
 		Identifier nodeName;
-		//std::vector<unsigned> arguments;
 		std::vector<Identifier> arguments;
 
 		NodeDescription();

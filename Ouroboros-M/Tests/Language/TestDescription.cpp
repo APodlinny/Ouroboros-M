@@ -11,10 +11,20 @@ TestDescription::TestDescription(std::string inputsVector, std::string outputsVe
 	this->outputsVector = outputsVector;
 }
 
-bool TestDescription::operator==(const TestDescription& other)
+bool TestDescription::operator==(const TestDescription& other) const
 {
 	return (inputsVector == other.inputsVector) &&
 		(outputsVector == other.outputsVector);
+}
+
+bool TestDescription::operator!=(const TestDescription& other) const
+{
+	return !operator==(other);
+}
+
+bool TestDescription::operator<(const TestDescription& other) const
+{
+	return (inputsVector + outputsVector) < (other.inputsVector + other.outputsVector);
 }
 
 std::string TestDescription::ToString()

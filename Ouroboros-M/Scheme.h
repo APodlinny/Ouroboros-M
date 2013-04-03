@@ -1,9 +1,9 @@
-#ifndef SHCEME_H
-#define SHCEME_H
+#ifndef OUROBOROS_SHCEME_H
+#define OUROBOROS_SHCEME_H
 
 #include "Scheme/Scheme.h"
 #include "Scheme/SchemeConverter.h"
 #include "Scheme/SchemeTransformer.h"
 #include "Scheme/SchemeCopier.h"
 
-#endif // SHCEME_H
+#endif // OUROBOROS_SHCEME_H

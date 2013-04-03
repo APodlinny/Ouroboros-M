@@ -24,7 +24,7 @@ FaultDescription::FaultDescription(
 	this->faultType = faultType;
 }
 
-bool FaultDescription::operator==(const FaultDescription& other)
+bool FaultDescription::operator==(const FaultDescription& other) const
 {
 	std::string firstNode = nodeName.name;
 	std::string firstDest;
@@ -44,30 +44,16 @@ bool FaultDescription::operator==(const FaultDescription& other)
 			
 	secondName = secondNode + secondDest;
 
-	return firstName == secondName;
+	return (firstName == secondName) && (faultType == other.faultType);
 }
 
 std::string FaultDescription::ToString()
 {
-	std::string result = nodeName.ToString();
+	std::stringstream os;
 
-	if (destinationName.is_initialized())
-		result += " -> " + destinationName.get().ToString();
+	print(os);
 
-	switch (faultType)
-	{
-	case FaultType::STUCK_AT_ONE:
-		return result + " /1\n";
-
-	case FaultType::STUCK_AT_ZERO:
-		return result + " /0\n";
-
-	case FaultType::STUCK_AT_BOTH:
-		return result + " /0 /1\n";
-
-	default:
-		return std::string();
-	}
+	return os.str();
 }
 
 void FaultDescription::print(std::ostream& os)
@@ -79,7 +65,7 @@ void FaultDescription::print(std::ostream& os)
 
 	if (destinationName.is_initialized())
 	{
-		os << " -> ";
+		os << "->";
 		destinationName.get().print(os);
 	}
 
@@ -94,7 +80,7 @@ void FaultDescription::print(std::ostream& os)
 		break;
 
 	case FaultType::STUCK_AT_BOTH:
-		os << " /1 /0\n";
+		os << " /0 /1\n";
 		break;
 	}
 }

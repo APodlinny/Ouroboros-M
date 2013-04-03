@@ -1,8 +1,12 @@
 #include "TextLine.h"
+#include <sstream>
 
 using namespace Ouroboros::Bench::Language;
 
-TextLine::TextLine() { }
+TextLine::TextLine()
+{
+	textLine = unused_type();
+}
 
 TextLine::TextLine(Definition def)
 {
@@ -14,38 +18,33 @@ TextLine::TextLine(PortIO port)
 	textLine = port;
 }
 
-std::string ToStringVisitor::operator()(Definition def) const
-{
-	return def.ToString();
-}
-
-std::string ToStringVisitor::operator()(PortIO port) const
-{
-	return port.ToString();
-}
-
-PrintVisitor::PrintVisitor(std::ostream* stream)
-{
-	this->stream = stream;
-}
+PrintVisitor::PrintVisitor(std::ostream& stream) : stream(stream) {}
 
 void PrintVisitor::operator()(Definition def) const
 {
-	def.print(*stream);
+	def.print(stream);
 }
 
 void PrintVisitor::operator()(PortIO port) const
 {
-	port.print(*stream);
+	port.print(stream);
+}
+
+void PrintVisitor::operator()(unused_type unused) const
+{
 }
 
 std::string TextLine::ToString()
 {
-	return boost::apply_visitor(ToStringVisitor(), textLine) + "\n";
+	std::stringstream os;
+
+	print(os);
+
+	return os.str();
 }
 
 void TextLine::print(std::ostream& os)
 {
-	boost::apply_visitor(PrintVisitor(&os), textLine);
+	boost::apply_visitor(PrintVisitor(os), textLine);
 	os << std::endl;
 }

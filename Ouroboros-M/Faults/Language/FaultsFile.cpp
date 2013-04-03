@@ -47,7 +47,7 @@ void FaultsFile::print(std::ostream& os)
 	Logger::ostream() << "Printing faults file to output stream. ";
 	Timer t;
 
-	os << "#" << std::endl;
+	//os << "#" << std::endl;
 
 	for (unsigned i = 0; i < lines.size(); i++)
 		lines[i].print(os);

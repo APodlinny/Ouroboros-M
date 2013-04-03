@@ -15,6 +15,7 @@ using Ouroboros::Common::GenericFileParser;
 namespace Ouroboros { namespace Faults { namespace Parser
 {
 
+	// Class for faults file parsing using FaultDescriptionParser
 	class FaultsFileParser : public GenericFileParser<FaultDescription, FaultsFile, FaultDescriptionParser>
 	{
 	public:

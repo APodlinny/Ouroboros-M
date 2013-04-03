@@ -14,6 +14,7 @@ using Ouroboros::Common::IShowable;
 namespace Ouroboros { namespace Faults { namespace Language
 {
 
+	// Fault description. Consists of name of the leaving gate, name of the destination gate (optional) and fault type (stuck at zero/one)
 	class FaultDescription : public IShowable
 	{
 	public:
@@ -29,7 +30,7 @@ namespace Ouroboros { namespace Faults { namespace Language
 			const Identifier& destinationName, 
 			FaultType::FaultTypeEnum faultType);
 
-		bool operator==(const FaultDescription& other);
+		bool operator==(const FaultDescription& other) const;
 
 		virtual std::string ToString(); 
 		virtual void print(std::ostream& os);

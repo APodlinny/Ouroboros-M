@@ -16,6 +16,8 @@ namespace Ouroboros { namespace Tests { namespace Language
 
 	typedef boost::variant<FaultDescription, TestDescription, unused_type> TextLineType;
 
+
+	// Class for representation or tests file text line. Can be either a fault description or a test description
 	class TestsTextLine
 	{
 	public:

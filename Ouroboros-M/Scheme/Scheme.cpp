@@ -2,7 +2,7 @@
 
 using namespace Ouroboros::Scheme;
 
-void Scheme::Clear()
+void SchemeDescription::Clear()
 {
 	nodeDescriptions.clear();
 	primaryIOs.clear();

@@ -25,6 +25,7 @@ typedef std::string::const_iterator Iterator;
 namespace Ouroboros { namespace Tests { namespace Parser 
 {
 
+	// Parser combinator for parsing tests file line
 	struct TextLine_parser : qi::grammar<Iterator, TestsTextLine(), ascii::space_type>
 	{
 		TextLine_parser();

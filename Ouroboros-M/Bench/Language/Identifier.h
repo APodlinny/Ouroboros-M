@@ -11,6 +11,8 @@ using namespace Ouroboros::Common;
 
 namespace Ouroboros { namespace Bench { namespace Language
 {
+
+	// Class represents gate name. Gate name consists of string name and index (-1 by default), which is used in scheme copying.
 	class Identifier : public IShowable
 	{
 	public:
@@ -18,11 +20,7 @@ namespace Ouroboros { namespace Bench { namespace Language
 		int id;
 
 		Identifier();
-
-		Identifier(std::string& name, int id);
 		Identifier(const std::string& name, int id);
-
-		Identifier(std::string& name);
 		Identifier(const std::string& name);
 
 		bool operator==(const Identifier& other) const;
@@ -32,6 +30,7 @@ namespace Ouroboros { namespace Bench { namespace Language
 		virtual std::string ToString();
 		virtual void print(std::ostream& os);
 	};
+
 }}}
 
 BOOST_FUSION_ADAPT_STRUCT(

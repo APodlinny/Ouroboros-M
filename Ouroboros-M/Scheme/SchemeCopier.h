@@ -7,18 +7,19 @@
 namespace Ouroboros { namespace Scheme
 {
 
+	// Class with scheme copying functionallity. Receives scheme without recursions, copies it N times and returns result with non-primary outputs deafened
 	class SchemeCopier
 	{
 	public:
-		SchemeCopier(Scheme& scheme);
+		SchemeCopier(SchemeDescription& scheme);
 
-		Scheme& GetResult();
+		SchemeDescription& GetResult();
 		void AppendCopy();
 
 	private:
-		Scheme& resultScheme;
-		Scheme appendedScheme;
-		Scheme copy;
+		SchemeDescription& resultScheme;
+		SchemeDescription appendedScheme;
+		SchemeDescription copy;
 	};
 
 }}

@@ -2,6 +2,7 @@
 #define TESTS_TESTGROUP_H
 
 #include <vector>
+#include <set>
 #include <boost/fusion/include/adapt_struct.hpp>
 
 #include "TestDescription.h"
@@ -14,6 +15,7 @@ using namespace Ouroboros::Common;
 namespace Ouroboros { namespace Tests { namespace Language
 {
 
+	// Tests group consists of fault description and a set of corresponding tests
 	class TestsGroup : public IShowable
 	{
 	public:

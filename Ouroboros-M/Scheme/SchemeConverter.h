@@ -5,42 +5,32 @@
 
 #include "../Bench.h"
 #include "Scheme.h"
-#include "SchemeValidator.h"
 
 using namespace Ouroboros::Bench::Language;
 
 namespace Ouroboros { namespace Scheme
 {
 
+	// Static class that provides two methods for converting from bench file to scheme and from scheme to bench file
 	class SchemeConverter
 	{
 	public:
-		static void BenchToScheme(const BenchFile& bench, Scheme& scheme);
-		static void SchemeToBench(const Scheme& scheme, BenchFile& bench);
+		static void BenchToScheme(const BenchFile& bench, SchemeDescription& scheme);
+		static void SchemeToBench(const SchemeDescription& scheme, BenchFile& bench);
 	};
 
+	// Visitor class for convertion from bench file to scheme, provides two methods for gate definition and IO port definition
 	class FillNodeDescriptionsVisitor : public boost::static_visitor<>
 	{
 	public:
-		FillNodeDescriptionsVisitor(Scheme* scheme);
+		FillNodeDescriptionsVisitor(SchemeDescription& _scheme) : scheme(_scheme) {}
 
 		void operator()(Definition def) const;
 		void operator()(PortIO port) const;
+		void operator()(unused_type unused) const;
 
 	private:
-		Scheme* scheme;
-	};
-
-	class FillNodeArgumentsVisitor : public boost::static_visitor<>
-	{
-	public:
-		FillNodeArgumentsVisitor(Scheme* scheme);
-
-		void operator()(Definition def) const;
-		void operator()(PortIO port) const;
-
-	private:
-		Scheme* scheme;
+		SchemeDescription& scheme;
 	};
 
 }}

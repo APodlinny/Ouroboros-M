@@ -14,6 +14,7 @@ using Ouroboros::Common::TextLineStorage;
 namespace Ouroboros { namespace Bench { namespace Language
 {
 
+	// Storage for bench-file lines. Each line is either IO port definition or gate definition
 	class BenchFile : public IShowable, public TextLineStorage<TextLine>
 	{
 	public:

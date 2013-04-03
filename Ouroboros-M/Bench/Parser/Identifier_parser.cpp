@@ -18,7 +18,8 @@ Identifier_parser::Identifier_parser() : Identifier_parser::base_type(id_rule, "
 	str_rule %= lexeme[+char_("a-zA-Z0-9_][")];
 	str_rule.name("string name");
 
-	id_rule %= (str_rule >> lit("{") >> int_ >> lit("}")) | str_rule;
+	//id_rule %= (str_rule >> lit("{") >> int_ >> lit("}")) | str_rule;
+	id_rule %= str_rule;
 	id_rule.name("identifier");
 
 	on_error<fail>

@@ -10,7 +10,7 @@ void BenchFileParser::FromStream(std::istream& stream, BenchFile& destination)
 	Logger::ostream() << "Parsing bench file. ";
 	Timer t;
 
-	GenericFileParser::FromStream(stream, destination);
+	GenericParallelFileParser::FromStream(stream, destination);
 
 	Logger::ostream() << "Time: " << t.GetTime() << std::endl;
 }

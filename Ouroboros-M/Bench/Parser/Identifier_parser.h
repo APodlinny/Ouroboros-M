@@ -20,6 +20,7 @@ typedef std::string::const_iterator Iterator;
 namespace Ouroboros { namespace Bench { namespace Parser 
 {
 
+	// Gate name parser combinator
 	struct Identifier_parser : qi::grammar<Iterator, Identifier(), ascii::space_type>
 	{
 		Identifier_parser();

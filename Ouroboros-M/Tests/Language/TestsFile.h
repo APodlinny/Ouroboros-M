@@ -14,6 +14,7 @@ using Ouroboros::Common::TextLineStorage;
 namespace Ouroboros { namespace Tests { namespace Language
 {
 
+	// Class is a storage for TestsTextLine
 	class TestsFile : public TextLineStorage<TestsTextLine>
 	{
 	public:

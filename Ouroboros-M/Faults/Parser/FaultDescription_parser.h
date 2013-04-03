@@ -26,6 +26,7 @@ typedef std::string::const_iterator Iterator;
 namespace Ouroboros { namespace Faults { namespace Parser
 {
 
+	// Fault description parser combinator
 	struct FaultDescription_parser : qi::grammar<Iterator, FaultDescription(), ascii::space_type>
 	{
 		FaultDescription_parser();

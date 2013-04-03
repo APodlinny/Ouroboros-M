@@ -4,6 +4,7 @@
 namespace Ouroboros { namespace Common
 {
 
+	// Interface for classes, that represent text line storages. Provides two methods: to delete all lines from storage and to add a new line.
 	template<typename T>
 	class TextLineStorage
 	{

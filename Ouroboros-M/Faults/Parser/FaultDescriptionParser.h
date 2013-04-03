@@ -12,6 +12,7 @@ using Ouroboros::Common::GenericTextLineParser;
 namespace Ouroboros { namespace Faults { namespace Parser
 {
 
+	// Text line parser for parsing strings into fault description structure
 	class FaultDescriptionParser : public GenericTextLineParser<FaultDescription>
 	{
 	public:

@@ -24,6 +24,7 @@ typedef std::string::const_iterator Iterator;
 namespace Ouroboros { namespace Bench { namespace Parser 
 {
 
+	// Gate definition parser combinator
 	struct Definition_parser : qi::grammar<Iterator, Definition(), ascii::space_type>
 	{
 		Definition_parser();

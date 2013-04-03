@@ -10,6 +10,7 @@ using Ouroboros::Common::IShowable;
 namespace Ouroboros { namespace Faults { namespace Language
 {
 
+	// Text line storage for fault descriptions
 	class FaultsFile : public IShowable, public TextLineStorage<FaultDescription>
 	{
 	public:

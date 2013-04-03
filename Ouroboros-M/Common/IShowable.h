@@ -4,8 +4,10 @@
 #include <string>
 #include <ostream>
 
-namespace Ouroboros { namespace Common {
-
+namespace Ouroboros { namespace Common 
+{
+	
+	// Interface for entities, that can be showable. Provides two methods: converter to string and printer to given output stream
 	struct IShowable
 	{
 		virtual std::string ToString() = 0;

@@ -22,6 +22,7 @@ typedef std::string::const_iterator Iterator;
 namespace Ouroboros { namespace Bench { namespace Parser 
 {
 
+	// Parser combinator for gate/port definition
 	struct TextLine_parser : qi::grammar<Iterator, TextLine(), ascii::space_type>
 	{
 		TextLine_parser::TextLine_parser();

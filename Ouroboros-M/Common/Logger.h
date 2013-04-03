@@ -7,10 +7,16 @@
 namespace Ouroboros { namespace Common
 {
 
+	// Static class that is used for logging
 	class Logger
 	{
 	public:
+		static void connectStream(std::ostream& stream);
+
 		static std::ostream& ostream();
+
+	private:
+		static std::ostream* stream;
 	};
 
 }}

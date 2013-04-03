@@ -33,6 +33,9 @@ struct FileLineVisitor : public boost::static_visitor<>
 
 void TestsConverter::FromFile(const TestsFile& file, TestsCollection& destination)
 {
+	Logger::ostream() << "Converting tests file. ";
+	Timer t;
+
 	destination.testsGroups.clear();
 	FileLineVisitor visitor(destination);
 
@@ -42,10 +45,15 @@ void TestsConverter::FromFile(const TestsFile& file, TestsCollection& destinatio
 	{
 		line->textLine.apply_visitor(visitor);
 	}
+
+	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }
 
 void TestsConverter::ToFile(const TestsCollection& collection, TestsFile& destination)
 {
+	Logger::ostream() << "Converting tests file. ";
+	Timer t;
+
 	for (std::vector<TestsGroup>::const_iterator group = collection.testsGroups.begin();
 		group != collection.testsGroups.end();
 		group++)
@@ -59,4 +67,6 @@ void TestsConverter::ToFile(const TestsCollection& collection, TestsFile& destin
 			destination.AddTextLine(TestsTextLine(*test));
 		}
 	}
+
+	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }

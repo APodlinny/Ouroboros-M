@@ -23,6 +23,7 @@ typedef std::string::const_iterator Iterator;
 namespace Ouroboros { namespace Bench { namespace Parser 
 {
 	
+	// IO port definition parser combinator
 	struct PortIO_parser : qi::grammar<Iterator, PortIO(), ascii::space_type>
 	{
 		PortIO_parser();

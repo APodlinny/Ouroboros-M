@@ -3,23 +3,25 @@
 
 using namespace Ouroboros::Scheme;
 
-SchemeCopier::SchemeCopier(Scheme& scheme) : resultScheme(scheme)
+SchemeCopier::SchemeCopier(SchemeDescription& scheme) : resultScheme(scheme)
 {
 	copy = resultScheme;
 	appendedScheme = copy;
 }
 
-Scheme& SchemeCopier::GetResult()
+SchemeDescription& SchemeCopier::GetResult()
 {
+	SchemeTransformer::DeafenNonPrimaryOutputs(resultScheme);
+
 	return resultScheme;
 }
 
 void SchemeCopier::AppendCopy()
 {
-	Logger::ostream() << "Appending a new copy to scheme.\n";
+	Logger::ostream() << "Appending a new copy to scheme. ";
 	Timer t;
 
-	// incrementing indexes in scheme copy to avoid name conflicts
+	// incrementing indexes in SchemeDescription copy to avoid name conflicts
 	SchemeTransformer::IncrementIndices(copy);
 
 	// looking for corresponding state bindings
@@ -36,10 +38,7 @@ void SchemeCopier::AppendCopy()
 	// concateneting schemes
 	SchemeTransformer::AppendScheme(appendedScheme, copy, bindings);
 
-	// deafening non-primary outputs
 	resultScheme = appendedScheme;
-
-	SchemeTransformer::DeafenNonPrimaryOutputs(resultScheme);
 
 	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }

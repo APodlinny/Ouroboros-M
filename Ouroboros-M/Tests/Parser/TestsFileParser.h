@@ -14,7 +14,8 @@ using namespace Ouroboros::Common;
 namespace Ouroboros { namespace Tests { namespace Parser
 {
 
-	class TestsFileParser : GenericFileParser<TestsTextLine, TestsFile, TextLineParser>
+	// Class for parsing tests file using TextLineParser
+	class TestsFileParser : GenericParallelFileParser<TestsTextLine, TestsFile, TextLineParser>
 	{
 	public:
 		void FromStream(std::istream& stream, TestsFile& destination);

@@ -2,22 +2,25 @@
 #define BENCH_TEXTLINE_H
 
 #include <boost/variant.hpp>
+#include <boost/spirit/home/support/unused.hpp>
+#include <boost/fusion/include/adapt_struct.hpp>
 
 #include <string>
 #include <iostream>
-#include <boost/fusion/include/adapt_struct.hpp>
 
 #include "../../Common.h"
 #include "PortIO.h"
 #include "Definition.h"
 
 using namespace Ouroboros::Common;
+using boost::spirit::unused_type;
 
-typedef boost::variant<Ouroboros::Bench::Language::Definition, Ouroboros::Bench::Language::PortIO> TextLineType;
+typedef boost::variant<Ouroboros::Bench::Language::Definition, Ouroboros::Bench::Language::PortIO, unused_type> TextLineType;
 
 namespace Ouroboros { namespace Bench { namespace Language
 {
 
+	// Class represents text line that is used by bench file parser. It can be either IO port definition or gate definition
 	class TextLine : public IShowable
 	{
 	public:
@@ -31,22 +34,17 @@ namespace Ouroboros { namespace Bench { namespace Language
 		virtual void print(std::ostream& os);
 	};
 
-	class ToStringVisitor : public boost::static_visitor<std::string>
-	{
-	public:
-		std::string operator()(Definition def) const;
-		std::string operator()(PortIO port) const;
-	};
-
+	// Class gives two functions for port and gate definition printing
 	class PrintVisitor : public boost::static_visitor<>
 	{
 	public:
-		PrintVisitor(std::ostream* stream);
+		PrintVisitor(std::ostream& stream);
 
 		void operator()(Definition def) const;
 		void operator()(PortIO port) const;
+		void operator()(unused_type unused) const;
 	private:
-		std::ostream *stream;
+		std::ostream &stream;
 	};
 
 }}}

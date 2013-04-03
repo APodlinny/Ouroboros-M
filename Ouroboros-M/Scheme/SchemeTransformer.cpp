@@ -4,7 +4,7 @@
 using namespace Ouroboros::Scheme;
 using namespace Ouroboros::Common;
 
-void SchemeTransformer::RemoveRecursions(Scheme& scheme)
+void SchemeTransformer::RemoveRecursions(SchemeDescription& scheme)
 {
 	Logger::ostream() << "Removing recursions. ";
 	Timer t;
@@ -20,7 +20,7 @@ void SchemeTransformer::RemoveRecursions(Scheme& scheme)
 	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }
 
-void SchemeTransformer::RemoveRecursion(Scheme& scheme, DescriptionReference recursionNode)
+void SchemeTransformer::RemoveRecursion(SchemeDescription& scheme, DescriptionReference recursionNode)
 {
 	StateBinding stateBinding;
 
@@ -50,7 +50,7 @@ void SchemeTransformer::RemoveRecursion(Scheme& scheme, DescriptionReference rec
 	scheme.stateBindings.push_back(stateBinding);
 }
 
-std::vector<DescriptionReference> SchemeTransformer::GetRecursionNodes(Scheme& scheme)
+std::vector<DescriptionReference> SchemeTransformer::GetRecursionNodes(SchemeDescription& scheme)
 {
 	std::vector<DescriptionReference> result;
 
@@ -65,7 +65,7 @@ std::vector<DescriptionReference> SchemeTransformer::GetRecursionNodes(Scheme& s
 	return result;
 }
 
-void SchemeTransformer::DeafenNonPrimaryOutputs(Scheme& scheme)
+void SchemeTransformer::DeafenNonPrimaryOutputs(SchemeDescription& scheme)
 {
 	Logger::ostream() << "Deafening non-primary outputs. ";
 	Timer t;
@@ -89,7 +89,7 @@ void SchemeTransformer::DeafenNonPrimaryOutputs(Scheme& scheme)
 	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }
 
-void SchemeTransformer::DeafenOutput(Scheme& scheme, DescriptionReference nonPrimaryNode)
+void SchemeTransformer::DeafenOutput(SchemeDescription& scheme, DescriptionReference nonPrimaryNode)
 {
 	Identifier nonPrimaryIdentifier = scheme.nodeDescriptions[nonPrimaryNode].nodeName;
 
@@ -111,7 +111,7 @@ void SchemeTransformer::DeafenOutput(Scheme& scheme, DescriptionReference nonPri
 	scheme.nodeDescriptions[nonPrimaryNode] = xorOutput;
 }
 
-void SchemeTransformer::IncrementIndices(Scheme& scheme)
+void SchemeTransformer::IncrementIndices(SchemeDescription& scheme)
 {
 	// incrementing indices for nodes
 	for (std::vector<NodeDescription>::iterator node = scheme.nodeDescriptions.begin();
@@ -140,9 +140,9 @@ void SchemeTransformer::IncrementIndices(Scheme& scheme)
 	}
 }
 
-void SchemeTransformer::AppendScheme(Scheme& schemeA, const Scheme& schemeB, const std::vector<StateBinding>& bindings)
+void SchemeTransformer::AppendScheme(SchemeDescription& schemeA, const SchemeDescription& schemeB, const std::vector<StateBinding>& bindings)
 {
-	// concatenating scheme faults lists
+	// concatenating SchemeDescription faults lists
 	for (std::vector<FaultDescription>::const_iterator faultDesc = schemeB.faultDescriptions.begin();
 		faultDesc != schemeB.faultDescriptions.end();
 		faultDesc++)
@@ -189,7 +189,7 @@ void SchemeTransformer::AppendScheme(Scheme& schemeA, const Scheme& schemeB, con
 
 	schemeA.stateBindings = newBindings;
 
-	// reference offset for second scheme (will be used for primaryIO and state bindings references)
+	// reference offset for second SchemeDescription (will be used for primaryIO and state bindings references)
 	int schemeBOffset = schemeA.nodeDescriptions.size();
 
 	// concatenating schemes
@@ -203,7 +203,7 @@ void SchemeTransformer::AppendScheme(Scheme& schemeA, const Scheme& schemeB, con
 	// forming primary IOs list
 	std::vector<DescriptionReference> ioList;
 
-	// adding all ports from second scheme (with shifting)
+	// adding all ports from second SchemeDescription (with shifting)
 	for (std::vector<DescriptionReference>::const_iterator ioRef = schemeB.primaryIOs.begin();
 		ioRef != schemeB.primaryIOs.end();
 		ioRef++)
@@ -252,7 +252,7 @@ void SchemeTransformer::AppendScheme(Scheme& schemeA, const Scheme& schemeB, con
 	std::vector<DescriptionReference> ioShifts = ioList;
 	std::vector<DescriptionReference> nonPrimaryShifts = nonPrimaryList;
 
-	// deleting state outputs from first scheme and state inputs from second scheme
+	// deleting state outputs from first SchemeDescription and state inputs from second scheme
 	// adding buf-node for each binding
 	for (std::vector<StateBinding>::const_iterator schemeBinding = bindings.begin();
 		schemeBinding != bindings.end();

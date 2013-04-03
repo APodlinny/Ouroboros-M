@@ -9,6 +9,7 @@ using Ouroboros::Common::IShowable;
 namespace Ouroboros { namespace Tests { namespace Language
 {
 
+	// Tests collection is just a set of tests groups. Each group consists of fault description and corresponding set of tests
 	class TestsCollection
 	{
 	public:

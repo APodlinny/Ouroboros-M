@@ -10,7 +10,7 @@ void TestsFileParser::FromStream(std::istream& stream, TestsFile& destination)
 	Logger::ostream() << "Parsing tests file. ";
 	Timer t;
 
-	GenericFileParser::FromStream(stream, destination);
+	GenericParallelFileParser::FromStream(stream, destination);
 
 	Logger::ostream() << "Time: " << t.GetTime() << std::endl;
 }

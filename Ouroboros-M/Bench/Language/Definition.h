@@ -12,6 +12,8 @@ using namespace Ouroboros::Common;
 
 namespace Ouroboros { namespace Bench { namespace Language
 {
+
+	// Class represents gate definition. It stores gate name and bound expression for this gate
 	class Definition : public IShowable
 	{
 	public:
@@ -23,6 +25,8 @@ namespace Ouroboros { namespace Bench { namespace Language
 		virtual std::string ToString(); 
 		virtual void print(std::ostream& os);
 	};
+
+
 }}}
 
 BOOST_FUSION_ADAPT_STRUCT(

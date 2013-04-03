@@ -11,6 +11,7 @@ using Ouroboros::Bench::Language::TextLine;
 namespace Ouroboros { namespace Bench { namespace Parser
 {
 
+	// Class that parses one line from bench file
 	class TextLineParser : public GenericTextLineParser<TextLine>
 	{
 	public:

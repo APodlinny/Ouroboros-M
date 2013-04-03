@@ -7,6 +7,7 @@
 namespace Ouroboros { namespace Common
 {
 
+	// Exception class, throwed by file parsers
 	class ParsingException : std::exception
 	{
 	public:

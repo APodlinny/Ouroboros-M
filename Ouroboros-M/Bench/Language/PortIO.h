@@ -14,6 +14,7 @@ using namespace Ouroboros::Common;
 namespace Ouroboros { namespace Bench { namespace Language
 {
 
+	// Class represents IO port definition. It consists of port type (INPUT or OUTPUT) and port name.
 	class PortIO : public IShowable
 	{
 	public:

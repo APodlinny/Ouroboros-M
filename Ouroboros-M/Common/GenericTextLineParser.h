@@ -8,6 +8,7 @@
 namespace Ouroboros { namespace Common
 {
 
+	// Interface for text line parsers. Provides only one method that parses string into some structure (TextLineType)
 	template<typename TextLineType>
 	class GenericTextLineParser
 	{

@@ -85,6 +85,18 @@
     <Filter Include="Source Files\Tests\Algorithm">
       <UniqueIdentifier>{2142458b-77be-4d3c-ba9c-84c0c4a4e876}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Algorithm">
+      <UniqueIdentifier>{b8b58611-3806-4fe4-9a50-e65ceb345f99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Algorithm">
+      <UniqueIdentifier>{cd1d0ea0-fed4-4e86-8622-ce728626a89e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Faults\Algorithm">
+      <UniqueIdentifier>{75f23dcd-8fa1-45f9-a4f6-fc69673ce3f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Faults\Algorithm">
+      <UniqueIdentifier>{82b1a283-88b7-4511-9e3a-c44d396112d1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -135,16 +147,10 @@
     <ClCompile Include="Scheme\NodeDescription.cpp">
       <Filter>Source Files\Scheme</Filter>
     </ClCompile>
-    <ClCompile Include="Scheme\SchemeValidator.cpp">
-      <Filter>Source Files\Scheme</Filter>
-    </ClCompile>
     <ClCompile Include="Scheme\SchemeTransformer.cpp">
       <Filter>Source Files\Scheme</Filter>
     </ClCompile>
     <ClCompile Include="Common\Algorithm.cpp">
-      <Filter>Source Files\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="Common\Settings.cpp">
       <Filter>Source Files\Common</Filter>
     </ClCompile>
     <ClCompile Include="Common\Logger.cpp">
@@ -206,6 +212,12 @@
     </ClCompile>
     <ClCompile Include="Tests\Algorithm\TestsConverter.cpp">
       <Filter>Source Files\Tests\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="Algorithm\OuroborosAlgo.cpp">
+      <Filter>Source Files\Algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="Faults\Algorithm\FaultsTransformer.cpp">
+      <Filter>Source Files\Faults\Algorithm</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -275,16 +287,10 @@
     <ClInclude Include="Scheme\NodeDescription.h">
       <Filter>Header Files\Scheme</Filter>
     </ClInclude>
-    <ClInclude Include="Scheme\SchemeValidator.h">
-      <Filter>Header Files\Scheme</Filter>
-    </ClInclude>
     <ClInclude Include="Scheme\SchemeTransformer.h">
       <Filter>Header Files\Scheme</Filter>
     </ClInclude>
     <ClInclude Include="Common\Algorithm.h">
-      <Filter>Header Files\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\Settings.h">
       <Filter>Header Files\Common</Filter>
     </ClInclude>
     <ClInclude Include="Common\Logger.h">
@@ -382,6 +388,18 @@
     </ClInclude>
     <ClInclude Include="Tests\Algorithm\TestsConverter.h">
       <Filter>Header Files\Tests\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Algorithm\OuroborosAlgo.h">
+      <Filter>Header Files\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Faults\Algorithm.h">
+      <Filter>Header Files\Faults</Filter>
+    </ClInclude>
+    <ClInclude Include="Faults\Algorithm\FaultsTransformer.h">
+      <Filter>Header Files\Faults\Algorithm</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

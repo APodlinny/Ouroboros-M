@@ -11,6 +11,7 @@ using Ouroboros::Tests::Language::TestsTextLine;
 namespace Ouroboros { namespace Tests { namespace Parser
 {
 
+	// Class for parsing a line string into TestsTextLine structure
 	class TextLineParser : public GenericTextLineParser<TestsTextLine>
 	{
 	public:

@@ -6,6 +6,7 @@
 namespace Ouroboros { namespace Common
 {
 
+	// Timer class is used for profiling
 	class Timer
 	{
 	public:

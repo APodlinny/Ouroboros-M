@@ -6,8 +6,67 @@
 using namespace Ouroboros::Tests::Algorithm;
 using namespace Ouroboros::Common;
 
+void TestsTransformer::RemoveNonPrimaryOutputs(TestsCollection& testsCollection, const std::vector<unsigned>& nonPrimaryOutputs)
+{
+	Logger::ostream() << "Removing non-primary outputs. ";
+	Timer t;
+
+	for (std::vector<TestsGroup>::iterator group = testsCollection.testsGroups.begin();
+		group != testsCollection.testsGroups.end();
+		group++)
+	{
+		RemoveNonPrimaryOutputs(*group, nonPrimaryOutputs);
+	}
+
+	Logger::ostream() << "Time: " << t.GetTime() << "\n";
+}
+
+void TestsTransformer::RemoveNonPrimaryOutputs(TestsGroup& testsGroup, const std::vector<unsigned>& nonPrimaryOutputs)
+{
+	for (std::vector<TestDescription>::iterator test = testsGroup.tests.begin();
+		test != testsGroup.tests.end();
+		test++)
+	{
+		for (std::vector<unsigned>::const_iterator nonPrimaryIndex = nonPrimaryOutputs.begin();
+			nonPrimaryIndex != nonPrimaryOutputs.end();
+			nonPrimaryIndex++)
+		{
+			test->outputsVector[*nonPrimaryIndex] = '_';
+		}
+
+		std::string::iterator result = std::remove(
+			test->outputsVector.begin(),
+			test->outputsVector.end(),
+			'_');
+
+		test->outputsVector.resize(result - test->outputsVector.begin());
+	}
+}
+
+void TestsTransformer::RemoveUnneededTests(TestsCollection& testsCollection, const FaultsFile& faults)
+{
+	for (std::vector<TestsGroup>::iterator group = testsCollection.testsGroups.begin();
+		group != testsCollection.testsGroups.end();
+		group++)
+	{
+		std::vector<FaultDescription>::const_iterator result = std::find(
+			faults.lines.begin(),
+			faults.lines.end(),
+			group->faultDescription);
+
+		if (result == faults.lines.end())
+			group->tests.clear();
+	}
+}
+
 void TestsTransformer::MergeSameFaults(TestsCollection& testsCollection)
 {
+	Logger::ostream() << "Merging same faults. ";
+	Timer t;
+
+	if (testsCollection.testsGroups.size() == 0)
+		return;
+
 	for (unsigned i = 0; i < testsCollection.testsGroups.size() - 1; i++)
 	{
 		for (unsigned j = i + 1; j < testsCollection.testsGroups.size(); j++)
@@ -19,6 +78,14 @@ void TestsTransformer::MergeSameFaults(TestsCollection& testsCollection)
 					test++)
 				{
 					testsCollection.testsGroups[i].tests.push_back(*test);
+					testsCollection.testsGroups[i].faultDescription.nodeName.id = -1;
+
+					if (testsCollection.testsGroups[i].faultDescription.destinationName.is_initialized())
+					{
+						Identifier dest = testsCollection.testsGroups[i].faultDescription.destinationName.get();
+						dest.id = -1;
+						testsCollection.testsGroups[i].faultDescription.destinationName = dest;
+					}
 				}
 
 				testsCollection.testsGroups[j] = TestsGroup();
@@ -32,126 +99,153 @@ void TestsTransformer::MergeSameFaults(TestsCollection& testsCollection)
 		TestsGroup());
 
 	testsCollection.testsGroups.resize(result - testsCollection.testsGroups.begin());
+
+	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }
 
 void TestsTransformer::ExpandIndefiniteValues(TestsCollection& testsCollection)
 {
-	for (std::vector<TestsGroup>::iterator group = testsCollection.testsGroups.begin();
-		group != testsCollection.testsGroups.end();
-		group++)
+	Logger::ostream() << "Expanding indefinite values. ";
+	Timer t;
+
+	struct callable
 	{
-		ExpandIndefiniteValues(*group);
-	}
+		void operator()(TestsGroup& group)
+		{
+			ExpandIndefiniteValues(group);
+		}
+	};
+
+	parallel_transform(
+		testsCollection.testsGroups.begin(),
+		testsCollection.testsGroups.end(), 
+		callable(), 
+		10);
+
+	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }
 
 void TestsTransformer::ExpandIndefiniteValues(TestsGroup& testsGroup)
 {
-	std::vector<TestDescription> additionalTests;
-	std::vector<TestDescription>::iterator test;
-
-	for (test = testsGroup.tests.begin();
-		test != testsGroup.tests.end();
-		test++)
+	for (unsigned i = 0; i < testsGroup.tests.size(); i++)
 	{
-		TestDescription newTest = ExpandIndefiniteValues(*test);
+		while (true)
+		{
+			std::string::iterator indefiniteIn = std::find(
+				testsGroup.tests[i].inputsVector.begin(),
+				testsGroup.tests[i].inputsVector.end(),
+				'x');
 
-		if (!(newTest == *test))
-			additionalTests.push_back(newTest);
-	}
+			std::string::iterator indefiniteOut = std::find(
+				testsGroup.tests[i].outputsVector.begin(),
+				testsGroup.tests[i].outputsVector.end(),
+				'x');
 
-	for (test = additionalTests.begin();
-		test != additionalTests.end();
-		test++)
-	{
-		testsGroup.tests.push_back(*test);
+			if (indefiniteOut != testsGroup.tests[i].outputsVector.end())
+			{
+				TestDescription newTest = testsGroup.tests[i];
+				unsigned index = indefiniteOut - testsGroup.tests[i].outputsVector.begin();
+
+				testsGroup.tests[i].outputsVector[index] = '0';
+				newTest.outputsVector[index] = '1';
+				testsGroup.tests.push_back(newTest);
+			}
+			else if (indefiniteIn != testsGroup.tests[i].inputsVector.end())
+			{
+				TestDescription newTest = testsGroup.tests[i];
+				unsigned index = indefiniteIn - testsGroup.tests[i].inputsVector.begin();
+
+				testsGroup.tests[i].inputsVector[index] = '0';
+				newTest.inputsVector[index] = '1';
+				testsGroup.tests.push_back(newTest);
+			}
+			else
+				break;
+		}
 	}
 }
 
-TestDescription TestsTransformer::ExpandIndefiniteValues(TestDescription& testDesc)
+void TestsTransformer::PackBySchemeInfo(TestsCollection& testsCollection, const std::vector<unsigned>& stateIndices)
 {
-	TestDescription result = testDesc;
+	Logger::ostream() << "Packing tests by state ports. ";
+	Timer t;
 
-	for (unsigned i = 0; i < testDesc.inputsVector.size(); i++)
-	{
-		if (testDesc.inputsVector[i] == 'x')
-		{
-			testDesc.inputsVector[i] = '0';
-			result.inputsVector[i] = '1';
-		}
-	}
+	PackByIndices(testsCollection, stateIndices);
 
-	for (unsigned i = 0; i < testDesc.outputsVector.size(); i++)
+	Logger::ostream() << "Time: " << t.GetTime() << "\n";
+}
+
+void TestsTransformer::RemoveEmptyGroups(TestsCollection& testsCollection)
+{
+	Logger::ostream() << "Removing empty tests groups. ";
+	Timer t;
+
+	struct LengthPredicate
 	{
-		if (testDesc.outputsVector[i] == 'x')
-		{
-			testDesc.outputsVector[i] = '0';
-			result.outputsVector[i] = '1';
-		}
+		bool operator()(const TestsGroup& group) { return group.tests.size() == 0; }
+	};
+
+	std::vector<TestsGroup>::iterator result = std::remove_if(
+		testsCollection.testsGroups.begin(),
+		testsCollection.testsGroups.end(),
+		LengthPredicate());
+
+	testsCollection.testsGroups.resize(result - testsCollection.testsGroups.begin());
+
+	Logger::ostream() << "Time: " << t.GetTime() << "\n";
+}
+
+TestDescription IndicesSelector::operator()(const TestDescription& key)
+{
+	TestDescription result = key;
+
+	for (std::vector<unsigned>::const_iterator index = stateIndices.begin();
+		index != stateIndices.end();
+		index++)
+	{
+		result.inputsVector[*index] = 'x';
 	}
 
 	return result;
 }
 
-struct IndicesSelector : Selector<TestDescription, std::string>
+void TestsTransformer::PackByIndices(TestsCollection& testsCollection, const std::vector<unsigned>& stateIndices)
 {
-	const std::vector<unsigned>& inputIndices;
-	const std::vector<unsigned>& outputIndices;
-
-	IndicesSelector(const std::vector<unsigned>& _inputIndices, const std::vector<unsigned>& _outputIndices) :
-		inputIndices(_inputIndices), outputIndices(_outputIndices) { }
-
-	std::string operator()(const TestDescription& key)
+	struct callable
 	{
-		std::stringstream result;
-		unsigned i;
-			
-		for (i = 0; i < inputIndices.size(); i++)
-			result << key.inputsVector[inputIndices[i]];
+		const std::vector<unsigned>& stateIndices;
 
-		for (i = 0; i < outputIndices.size(); i++)
-			result << key.outputsVector[outputIndices[i]];
+		callable(const std::vector<unsigned>& stateIndices)
+			: stateIndices(stateIndices) {}
 
-		return result.str();
-	}
-};
+		void operator()(TestsGroup& testsGroup)
+		{
+			PackByIndices(testsGroup, stateIndices);
+		}
+	};
 
-struct SetCompare : std::binary_function<TestDescription, TestDescription, bool>
-{
-	bool operator()(const TestDescription& a, const TestDescription& b)
-	{
-		auto result = (a.inputsVector + a.outputsVector) < (b.inputsVector + b.outputsVector);
-		return result;
-	}
-};
-
-void TestsTransformer::PackByIndices(TestsCollection& testsCollection, const std::vector<unsigned>& inputIndices, const std::vector<unsigned>& outputIndices)
-{
-	for (std::vector<TestsGroup>::iterator group = testsCollection.testsGroups.begin();
-		group != testsCollection.testsGroups.end();
-		group++)
-	{
-		PackByIndices(*group, inputIndices, outputIndices);
-	}
+	parallel_transform(
+		testsCollection.testsGroups.begin(),
+		testsCollection.testsGroups.end(), 
+		callable(stateIndices), 
+		10);
 }
 
-void TestsTransformer::PackByIndices(TestsGroup& testsGroup, const std::vector<unsigned>& inputIndices, const std::vector<unsigned>& outputIndices)
+void TestsTransformer::PackByIndices(TestsGroup& testsGroup, const std::vector<unsigned>& stateIndices)
 {
 	typedef std::vector<TestDescription>::iterator Iterator;
 
-	unsigned stateInputsNumber = 0;
-	if (testsGroup.tests.size() != 0)
-		stateInputsNumber = testsGroup.tests[0].inputsVector.size() - inputIndices.size();
-
+	unsigned stateInputsNumber = stateIndices.size();
 	unsigned stateCombinations = 1 << stateInputsNumber;
 
-	IndicesSelector selector(inputIndices, outputIndices);
+	IndicesSelector selector(stateIndices);
 
 	std::vector<IteratorRange<Iterator>> result = 
-		group_by<Iterator, TestDescription, std::string, IndicesSelector>(
+		group_by<Iterator, TestDescription, TestDescription, IndicesSelector>(
 			testsGroup.tests.begin(),
 			testsGroup.tests.end(),
 			selector);
-
+			
 	std::vector<IteratorRange<Iterator>>::iterator group;
 	std::vector<TestDescription> newTests;
 
@@ -159,36 +253,51 @@ void TestsTransformer::PackByIndices(TestsGroup& testsGroup, const std::vector<u
 		group != result.end();
 		group++)
 	{
-		std::set<TestDescription, SetCompare> unique;
+		if (group->to - group->from < 2)
+			break;
 
-		for (Iterator element = group->from;
-			element != group->to;
-			element++)
-		{
-			unique.insert(*element);
-		}
+		std::set<TestDescription> unique(group->from, group->to);
 
 		if ((unique.size() >= stateCombinations) && (stateCombinations != 1))
 		{
 			TestDescription newTest = *unique.begin();
-			SetIndefiniteValuesBut(newTest, inputIndices);
+			SetIndefiniteValuesBut(newTest, stateIndices);
 
 			newTests.push_back(newTest);
+			break;
 		}
+	}
+
+	for (Iterator test = newTests.begin();
+		test != newTests.end();
+		test++)
+	{
+		std::string::iterator result;
+		
+		result = std::remove(
+			test->inputsVector.begin(),
+			test->inputsVector.end(),
+			'x');
+
+		test->inputsVector.resize(result - test->inputsVector.begin());
+
+		/*result = std::remove(
+			test->outputsVector.begin(),
+			test->outputsVector.end(),
+			'x');
+
+		test->outputsVector.resize(result - test->outputsVector.begin());*/
 	}
 
 	testsGroup.tests = newTests;
 }
 
-void TestsTransformer::SetIndefiniteValuesBut(TestDescription& test, const std::vector<unsigned>& definiteIndices)
+void TestsTransformer::SetIndefiniteValuesBut(TestDescription& test, const std::vector<unsigned>& stateIndices)
 {
-	for (unsigned i = 0; i < test.inputsVector.size(); i++)
+	for (std::vector<unsigned>::const_iterator index = stateIndices.begin();
+		index != stateIndices.end();
+		index++)
 	{
-		std::vector<unsigned>::const_iterator result = std::find(
-			definiteIndices.begin(),
-			definiteIndices.end(), i);
-
-		if (result == definiteIndices.end())
-			test.inputsVector[i] = 'x';
+		test.inputsVector[*index] = 'x';
 	}
 }

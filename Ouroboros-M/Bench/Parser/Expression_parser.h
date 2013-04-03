@@ -23,6 +23,7 @@ typedef std::string::const_iterator Iterator;
 namespace Ouroboros { namespace Bench { namespace Parser 
 {
 
+	// Boolean expression parser combinator
 	struct Expression_parser : qi::grammar<Iterator, Expression(), ascii::space_type>
 	{
 		Expression_parser();

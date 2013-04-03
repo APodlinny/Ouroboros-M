@@ -4,14 +4,14 @@
 using namespace Ouroboros::Scheme;
 using namespace Ouroboros::Common;
 
-void SchemeConverter::BenchToScheme(const BenchFile& bench, Scheme& scheme)
+void SchemeConverter::BenchToScheme(const BenchFile& bench, SchemeDescription& scheme)
 {
 	Logger::ostream() << "Converting bench file to scheme. ";
 	Timer t;
 
 	scheme.Clear();
 
-	FillNodeDescriptionsVisitor descriptionsVisitor(&scheme);
+	FillNodeDescriptionsVisitor descriptionsVisitor(scheme);
 
 	for (unsigned i = 0; i < bench.lines.size(); i++)
 		boost::apply_visitor(descriptionsVisitor, bench.lines[i].textLine);
@@ -19,9 +19,9 @@ void SchemeConverter::BenchToScheme(const BenchFile& bench, Scheme& scheme)
 	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }
 
-void SchemeConverter::SchemeToBench(const Scheme& scheme, BenchFile& bench)
+void SchemeConverter::SchemeToBench(const SchemeDescription& scheme, BenchFile& bench)
 {
-	Logger::ostream() << "Converting scheme to bench file. ";
+	Logger::ostream() << "Converting SchemeDescription to bench file. ";
 	Timer t;
 
 	bench.Clear();
@@ -56,11 +56,6 @@ void SchemeConverter::SchemeToBench(const Scheme& scheme, BenchFile& bench)
 	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }
 
-FillNodeDescriptionsVisitor::FillNodeDescriptionsVisitor(Scheme* scheme)
-{
-	this->scheme = scheme;
-}
-
 void FillNodeDescriptionsVisitor::operator()(Definition def) const
 {
 	NodeDescription description;
@@ -69,7 +64,7 @@ void FillNodeDescriptionsVisitor::operator()(Definition def) const
 	description.nodeName = def.defined;
 	description.arguments = def.expression.arguments;
 
-	scheme->nodeDescriptions.push_back(description);
+	scheme.nodeDescriptions.push_back(description);
 }
 
 void FillNodeDescriptionsVisitor::operator()(PortIO port) const
@@ -79,9 +74,13 @@ void FillNodeDescriptionsVisitor::operator()(PortIO port) const
 	description.nodeType = port.portType;
 	description.nodeName = port.portName;
 
-	scheme->nodeDescriptions.push_back(description);
+	scheme.nodeDescriptions.push_back(description);
 
-	DescriptionReference ioReference = scheme->nodeDescriptions.size();
+	DescriptionReference ioReference = scheme.nodeDescriptions.size();
 	ioReference--;
-	scheme->primaryIOs.push_back(ioReference);
+	scheme.primaryIOs.push_back(ioReference);
+}
+
+void FillNodeDescriptionsVisitor::operator()(unused_type unused) const
+{
 }
