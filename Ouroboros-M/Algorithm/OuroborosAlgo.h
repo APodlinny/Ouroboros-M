@@ -30,10 +30,13 @@ namespace Ouroboros
 
 	private:
 		void Init(const std::string& benchFileName, const std::string& faultsFileName, unsigned copiesNumber);
+
 		void runAtalanta(const std::string& benchFileName, const std::string& faultsFileName, const std::string& testsFileName);
+		void runHope(const std::string& benchFileName, const std::string& faultsFileName, const std::string& testsFileName);
 
 		void getSchemeInfo(const SchemeDescription& scheme, std::vector<unsigned>& stateInputs, std::vector<unsigned>& nonPrimaryOutputs);
 	};
+
 }
 
 #endif // ALGORITHM_OUROBOROSALGO_H

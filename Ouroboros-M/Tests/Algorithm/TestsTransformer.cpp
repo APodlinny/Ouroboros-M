@@ -55,8 +55,20 @@ void TestsTransformer::RemoveUnneededTests(TestsCollection& testsCollection, con
 			group->faultDescription);
 
 		if (result == faults.lines.end())
+		{
 			group->tests.clear();
+
+			// marking tests group for delete
+			*group = TestsGroup();
+		}
 	}
+
+	std::vector<TestsGroup>::iterator result = std::remove(
+		testsCollection.testsGroups.begin(),
+		testsCollection.testsGroups.end(),
+		TestsGroup());
+
+	testsCollection.testsGroups.resize(result - testsCollection.testsGroups.begin());
 }
 
 void TestsTransformer::MergeSameFaults(TestsCollection& testsCollection)
@@ -299,5 +311,42 @@ void TestsTransformer::SetIndefiniteValuesBut(TestDescription& test, const std::
 		index++)
 	{
 		test.inputsVector[*index] = 'x';
+	}
+}
+
+void TestsTransformer::TestsFileToHopeFile(HopeTestsFile& hopeFile, const TestsCollection& testsCollection, const SchemeDescription& scheme)
+{
+	hopeFile.tests.clear();
+	unsigned primaryInputs = 0;
+	
+	for (std::vector<unsigned>::const_iterator index = scheme.primaryIOs.begin();
+		index != scheme.primaryIOs.end();
+		index++)
+	{
+		NodeDescription node = scheme.nodeDescriptions[*index];
+
+		if ((node.nodeType == NodeType::INPUT) && (node.nodeName.id == -1))
+			primaryInputs++;
+	}
+
+	for (std::vector<TestsGroup>::const_iterator group = testsCollection.testsGroups.begin();
+		group != testsCollection.testsGroups.end();
+		group++)
+	{
+		if (group->tests.size() == 0)
+			continue;
+
+		int currentIndex = 1;
+		std::string testString = group->tests[0].inputsVector;
+		unsigned base = 0;
+
+		while (base < testString.length())
+		{
+			TestDescription currentTest;
+			currentTest.inputsVector = testString.substr(base, primaryInputs);
+
+			hopeFile.tests.push_back(std::pair<int, TestDescription>(currentIndex, currentTest));
+			base += primaryInputs;
+		}
 	}
 }

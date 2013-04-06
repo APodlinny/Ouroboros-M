@@ -12,7 +12,7 @@
 
 int main()
 {
-	Ouroboros::OuroborosAlgo algo("d:/s298.bench", "d:/s298.flt", 10);
+	Ouroboros::OuroborosAlgo algo("d:/s27.bench", "d:/s27.flt", 5);
 	algo.Run();
 	
 	return 0;

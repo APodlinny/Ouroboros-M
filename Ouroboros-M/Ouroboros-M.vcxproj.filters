@@ -219,6 +219,9 @@
     <ClCompile Include="Faults\Algorithm\FaultsTransformer.cpp">
       <Filter>Source Files\Faults\Algorithm</Filter>
     </ClCompile>
+    <ClCompile Include="Tests\Language\HopeTestsFile.cpp">
+      <Filter>Source Files\Tests\Language</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bench\Language.h">
@@ -400,6 +403,9 @@
     </ClInclude>
     <ClInclude Include="Faults\Algorithm\FaultsTransformer.h">
       <Filter>Header Files\Faults\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="Tests\Language\HopeTestsFile.h">
+      <Filter>Header Files\Tests\Language</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

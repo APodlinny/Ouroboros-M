@@ -6,5 +6,6 @@
 #include "Language/TestsCollection.h"
 #include "Language/TestsFile.h"
 #include "Language/TestsTextLine.h"
+#include "Language/HopeTestsFile.h"
 
 #endif // TESTS_LANGUAGE_H

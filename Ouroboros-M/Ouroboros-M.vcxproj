@@ -109,6 +109,7 @@
     <ClCompile Include="Scheme\SchemeTransformer.cpp" />
     <ClCompile Include="Tests\Algorithm\TestsConverter.cpp" />
     <ClCompile Include="Tests\Algorithm\TestsTransformer.cpp" />
+    <ClCompile Include="Tests\Language\HopeTestsFile.cpp" />
     <ClCompile Include="Tests\Language\TestDescription.cpp" />
     <ClCompile Include="Tests\Language\TestsCollection.cpp" />
     <ClCompile Include="Tests\Language\TestsFile.cpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="Tests\Algorithm\TestsConverter.h" />
     <ClInclude Include="Tests\Algorithm\TestsTransformer.h" />
     <ClInclude Include="Tests\Language.h" />
+    <ClInclude Include="Tests\Language\HopeTestsFile.h" />
     <ClInclude Include="Tests\Language\TestDescription.h" />
     <ClInclude Include="Tests\Language\TestsCollection.h" />
     <ClInclude Include="Tests\Language\TestsFile.h" />

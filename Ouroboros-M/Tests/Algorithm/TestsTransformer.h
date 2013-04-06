@@ -20,6 +20,7 @@ namespace Ouroboros { namespace Tests { namespace Algorithm
 		static void PackBySchemeInfo(TestsCollection& testsCollection, const std::vector<unsigned>& stateIndices);
 		static void RemoveEmptyGroups(TestsCollection& testsCollection);
 		static void RemoveUnneededTests(TestsCollection& testsCollection, const FaultsFile& faults);
+		static void TestsFileToHopeFile(HopeTestsFile& hopeFile, const TestsCollection& testsCollection, const SchemeDescription& scheme);
 		
 	private:
 		static void RemoveNonPrimaryOutputs(TestsGroup& testsGroup, const std::vector<unsigned>& nonPrimaryOutputs);
