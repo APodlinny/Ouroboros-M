@@ -15,7 +15,7 @@ TextLine_parser::TextLine_parser() : TextLine_parser::base_type(line_rule, "text
     using phoenix::val;
 	using namespace qi::labels;
 
-	line_rule %= (test_parser | fault_parser | *char_) >> eoi;
+	line_rule %= (test_parser | fault_parser) >> eoi;
 	line_rule.name("text line");
 
 	on_error<fail>

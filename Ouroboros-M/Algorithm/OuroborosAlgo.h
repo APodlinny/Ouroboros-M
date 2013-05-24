@@ -22,16 +22,18 @@ namespace Ouroboros
 		std::string tempBenchFileName;
 		std::string tempFaultsFileName;
 		unsigned copiesNumber;
+		unsigned testNumberLimit;
 
 		OuroborosAlgo(const std::string& benchFileName, const std::string& faultsFileName);
 		OuroborosAlgo(const std::string& benchFileName, const std::string& faultsFileName, unsigned copiesNumber);
+		OuroborosAlgo(const std::string& benchFileName, const std::string& faultsFileName, unsigned copiesNumber, unsigned testNumberLimit);
 
 		void Run();
 
 	private:
-		void Init(const std::string& benchFileName, const std::string& faultsFileName, unsigned copiesNumber);
+		void Init(const std::string& benchFileName, const std::string& faultsFileName, unsigned copiesNumber, unsigned testNumberLimit);
 
-		void runAtalanta(const std::string& benchFileName, const std::string& faultsFileName, const std::string& testsFileName);
+		void runAtalanta(const std::string& benchFileName, const std::string& faultsFileName, const std::string& testsFileName, unsigned testNumberLimit);
 		void runHope(const std::string& benchFileName, const std::string& faultsFileName, const std::string& testsFileName);
 
 		void getSchemeInfo(const SchemeDescription& scheme, std::vector<unsigned>& stateInputs, std::vector<unsigned>& nonPrimaryOutputs);

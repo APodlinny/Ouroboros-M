@@ -52,19 +52,25 @@ void deleteFile(const std::string& filename)
 // OuroborosAlgo class constructors
 OuroborosAlgo::OuroborosAlgo(const std::string& benchFileName, const std::string& faultsFileName)
 {
-	Init(benchFileName, faultsFileName, 10);
+	Init(benchFileName, faultsFileName, 10, 1000);
 }
 
 OuroborosAlgo::OuroborosAlgo(const std::string& benchFileName, const std::string& faultsFileName, unsigned copiesNumber)
 {
-	Init(benchFileName, faultsFileName, copiesNumber);
+	Init(benchFileName, faultsFileName, copiesNumber, 1000);
 }
 
-void OuroborosAlgo::Init(const std::string& benchFileName, const std::string& faultsFileName, unsigned copiesNumber)
+OuroborosAlgo::OuroborosAlgo(const std::string& benchFileName, const std::string& faultsFileName, unsigned copiesNumber, unsigned testNumberLimit)
+{
+	Init(benchFileName, faultsFileName, copiesNumber, testNumberLimit);
+}
+
+void OuroborosAlgo::Init(const std::string& benchFileName, const std::string& faultsFileName, unsigned copiesNumber, unsigned testNumberLimit)
 {
 	this->benchFileName = benchFileName;
 	this->faultsFileName = faultsFileName;
 	this->copiesNumber = copiesNumber;
+	this->testNumberLimit = testNumberLimit;
 
 	std::string noExtName;
 	std::getline(std::stringstream(benchFileName), noExtName, '.');
@@ -97,6 +103,9 @@ void OuroborosAlgo::Run()
 	TestsCollection tests;
 	TestsCollection allTests;
 	HopeTestsFile resultTests;
+	int allFaultsNumber;
+	int testedFaultsNumber;
+	unsigned stepNum = 1;
 
 	std::vector<unsigned> stateInputs;
 	std::vector<unsigned> nonPrimaryOutputs;
@@ -113,6 +122,8 @@ void OuroborosAlgo::Run()
 
 	// making a copy of faults list. Will be used later in scheme copying
 	originalFaults = faultsFile;
+
+	allFaultsNumber = originalFaults.lines.size();
 	
 	// converting bench file into scheme, removing flip-flops, initializing scheme copier
 	SchemeConverter::BenchToScheme(benchFile, scheme);
@@ -121,6 +132,9 @@ void OuroborosAlgo::Run()
 	
 	while (true)
 	{
+		Logger::ostream() << "Step number: " << stepNum << std::endl;
+		stepNum++;
+
 		// getting current scheme with non-primary outputs deafened
 		scheme = copier.GetResult();
 
@@ -133,7 +147,7 @@ void OuroborosAlgo::Run()
 		writeToFile(tempFaultsFileName, faultsFile);
 
 		// running atalanta and reading result tests file
-		runAtalanta(tempBenchFileName, tempFaultsFileName, testsFileName);
+		runAtalanta(tempBenchFileName, tempFaultsFileName, testsFileName, testNumberLimit);
 		readFromFile(testsFileName, TestsFileParser(), testsFile);
 
 		// grouping tests by faults, removing unneeded tests and test info
@@ -206,6 +220,7 @@ void OuroborosAlgo::Run()
 
 					Logger::ostream() << "\t";
 					newGroup.faultDescription.print(Logger::ostream());
+					Logger::ostream() << std::endl;
 
 					// deleting corresponding fault from faults lists
 					std::vector<FaultDescription>::iterator result = std::remove(
@@ -230,18 +245,21 @@ void OuroborosAlgo::Run()
 
 		Logger::ostream() << "Time: " << faultLookupTime.GetTime() << std::endl;
 
-		/*// repacking remained tests
-		TestsTransformer::ExpandIndefiniteValues(tests);
+		// repacking remained tests
+		/*TestsTransformer::ExpandIndefiniteValues(tests);
 		TestsTransformer::PackBySchemeInfo(tests, stateInputs);
-		TestsTransformer::RemoveEmptyGroups(tests);
+		TestsTransformer::RemoveEmptyGroups(tests);*/
 
-		Logger::ostream() << "Tested faults by ouroboros: \n";
+		/*Logger::ostream() << "Tested faults by ouroboros: \n";
 		faultLookupTime.Init();
 
 		for (std::vector<TestsGroup>::iterator group = tests.testsGroups.begin();
 			group != tests.testsGroups.end();
 			group++)
 		{
+			if (group->tests.size() == 0)
+				continue;
+
 			Logger::ostream() << '\t';
 			group->faultDescription.print(Logger::ostream());
 
@@ -291,10 +309,17 @@ void OuroborosAlgo::Run()
 
 	Logger::ostream() << "Total time: " << totalTime.GetTime() << std::endl;
 
+	testedFaultsNumber = allFaultsNumber - originalFaults.lines.size();
+	Logger::ostream() 
+		<< "Tested faults / all faults: " 
+		<< testedFaultsNumber << "/" << allFaultsNumber 
+		<< " = " << testedFaultsNumber / (double)allFaultsNumber * 100
+		<< "%" << std::endl;
+
 	// printing HOPE simulation results
 	runHope(benchFileName, faultsFileName, testsFileName);
 
-	// printing a list of untested faults
+	/*// printing a list of untested faults
 	for (std::vector<FaultDescription>::iterator fault = faultsFile.lines.begin();
 		fault != faultsFile.lines.end();
 		fault++)
@@ -303,19 +328,25 @@ void OuroborosAlgo::Run()
 		Logger::ostream() << ' ';
 	}
 
-	Logger::ostream() << std::endl;
+	Logger::ostream() << std::endl;*/
 }
 
 // function that runs atalanta using specified file names for bench, faults and tests
-void OuroborosAlgo::runAtalanta(const std::string& benchFileName, const std::string& faultsFileName, const std::string& testsFileName)
+void OuroborosAlgo::runAtalanta(const std::string& benchFileName, const std::string& faultsFileName, const std::string& testsFileName, unsigned testNumberLimit)
 {
 	Logger::ostream() << "Running atalanta. ";
 	Timer t;
 
 	// atalanta command
-	std::string command = "atalanta.exe -A -D 100 " + benchFileName + " -f " + faultsFileName + " -t " + testsFileName + " > nul";
+	std::stringstream command;
+	command << "atalanta.exe"; // path to atalanta
+	command << " -A -D " << testNumberLimit; // atalanta flags
+	command << " " << benchFileName; // bench file name
+	command << " -f " << faultsFileName; // faults file name
+	command << " -t " << testsFileName; // tests file name
+	command << " > nul"; // redirecting atalanta stdout to nul
 
-	if (system(command.c_str()) == 1)
+	if (system(command.str().c_str()) == 1)
 		throw std::exception("Can't launch atalanta.");
 
 	Logger::ostream() << "Time: " << t.GetTime() << "\n";

@@ -23,8 +23,6 @@ namespace Ouroboros { namespace Scheme
 		std::vector<DescriptionReference> nonPrimaryOutputs;
 		std::vector<StateBinding> stateBindings;
 
-		std::vector<FaultDescription> faultDescriptions;
-
 		void Clear();
 	};
 

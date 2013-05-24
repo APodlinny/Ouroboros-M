@@ -8,6 +8,4 @@ void SchemeDescription::Clear()
 	primaryIOs.clear();
 	nonPrimaryOutputs.clear();
 	stateBindings.clear();
-
-	faultDescriptions.clear();
 }

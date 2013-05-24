@@ -45,6 +45,9 @@ void TestsTransformer::RemoveNonPrimaryOutputs(TestsGroup& testsGroup, const std
 
 void TestsTransformer::RemoveUnneededTests(TestsCollection& testsCollection, const FaultsFile& faults)
 {
+	Logger::ostream() << "Removing unneeded tests. ";
+	Timer t;
+
 	for (std::vector<TestsGroup>::iterator group = testsCollection.testsGroups.begin();
 		group != testsCollection.testsGroups.end();
 		group++)
@@ -69,6 +72,8 @@ void TestsTransformer::RemoveUnneededTests(TestsCollection& testsCollection, con
 		TestsGroup());
 
 	testsCollection.testsGroups.resize(result - testsCollection.testsGroups.begin());
+
+	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }
 
 void TestsTransformer::MergeSameFaults(TestsCollection& testsCollection)
@@ -120,7 +125,7 @@ void TestsTransformer::ExpandIndefiniteValues(TestsCollection& testsCollection)
 	Logger::ostream() << "Expanding indefinite values. ";
 	Timer t;
 
-	struct callable
+	/*struct callable
 	{
 		void operator()(TestsGroup& group)
 		{
@@ -132,7 +137,14 @@ void TestsTransformer::ExpandIndefiniteValues(TestsCollection& testsCollection)
 		testsCollection.testsGroups.begin(),
 		testsCollection.testsGroups.end(), 
 		callable(), 
-		10);
+		testsCollection.testsGroups.size() / 4);*/
+
+	for (auto group = testsCollection.testsGroups.begin();
+		group != testsCollection.testsGroups.end();
+		group++)
+	{
+		ExpandIndefiniteValues(*group);
+	}
 
 	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }

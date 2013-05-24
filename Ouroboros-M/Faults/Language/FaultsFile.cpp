@@ -1,4 +1,5 @@
 #include "FaultsFile.h"
+#include <sstream>
 
 using namespace Ouroboros::Faults::Language;
 
@@ -32,14 +33,11 @@ void FaultsFile::ExpandFaults()
 
 std::string FaultsFile::ToString()
 {
-	std::string result;
+	std::stringstream os;
 
-	for (unsigned i = 0; i < lines.size(); i++)
-	{
-		result += lines[i].ToString();
-	}
+	print(os);
 
-	return result;
+	return os.str();
 }
 
 void FaultsFile::print(std::ostream& os)
@@ -47,10 +45,11 @@ void FaultsFile::print(std::ostream& os)
 	Logger::ostream() << "Printing faults file to output stream. ";
 	Timer t;
 
-	//os << "#" << std::endl;
-
 	for (unsigned i = 0; i < lines.size(); i++)
+	{
 		lines[i].print(os);
+		os << std::endl;
+	}
 
 	Logger::ostream() << "Time: " << t.GetTime() << "\n";
 }

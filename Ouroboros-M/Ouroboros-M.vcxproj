@@ -52,12 +52,16 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>D:\study\Projects\boost_1_53_0\libs;D:\study\Projects\boost_1_53_0</AdditionalIncludeDirectories>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>D:\study\Projects\boost_1_53_0\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -93,7 +97,6 @@
     <ClCompile Include="Bench\Parser\TextLine_parser.cpp" />
     <ClCompile Include="Common\Algorithm.cpp" />
     <ClCompile Include="Common\Logger.cpp" />
-    <ClCompile Include="Common\ParsingException.cpp" />
     <ClCompile Include="Common\Timer.cpp" />
     <ClCompile Include="Faults\Algorithm\FaultsTransformer.cpp" />
     <ClCompile Include="Faults\Language\FaultDescription.cpp" />
@@ -145,7 +148,6 @@
     <ClInclude Include="Common\GenericTextLineParser.h" />
     <ClInclude Include="Common\IShowable.h" />
     <ClInclude Include="Common\Logger.h" />
-    <ClInclude Include="Common\ParsingException.h" />
     <ClInclude Include="Common\TextLineStorage.h" />
     <ClInclude Include="Common\Timer.h" />
     <ClInclude Include="Faults.h" />

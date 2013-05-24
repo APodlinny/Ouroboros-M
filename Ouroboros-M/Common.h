@@ -8,6 +8,5 @@
 #include "Common/TextLineStorage.h"
 #include "Common/GenericTextLineParser.h"
 #include "Common/GenericFileParser.h"
-#include "Common/ParsingException.h"
 
 #endif // OUROBOROS_COMMON_H

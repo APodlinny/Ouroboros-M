@@ -72,15 +72,15 @@ void FaultDescription::print(std::ostream& os)
 	switch (faultType)
 	{
 	case FaultType::STUCK_AT_ONE:
-		os << " /1\n";
+		os << " /1";
 		break;
 
 	case FaultType::STUCK_AT_ZERO:
-		os << " /0\n";
+		os << " /0";
 		break;
 
 	case FaultType::STUCK_AT_BOTH:
-		os << " /0 /1\n";
+		os << " /0 /1";
 		break;
 	}
 }

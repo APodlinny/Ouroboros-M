@@ -10,7 +10,7 @@ void FaultsFileParser::FromStream(std::istream& stream, FaultsFile& destination)
 	Logger::ostream() << "Parsing faults file. ";
 	Timer t;
 
-	GenericFileParser::FromStream(stream, destination);
+	baseParser.FromStream(stream, destination);
 
 	Logger::ostream() << "Time: " << t.GetTime() << std::endl;
 }

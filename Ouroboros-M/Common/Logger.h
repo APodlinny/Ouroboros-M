@@ -11,8 +11,6 @@ namespace Ouroboros { namespace Common
 	class Logger
 	{
 	public:
-		static void connectStream(std::ostream& stream);
-
 		static std::ostream& ostream();
 
 	private:

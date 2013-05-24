@@ -16,11 +16,14 @@ namespace Ouroboros { namespace Faults { namespace Parser
 {
 
 	// Class for faults file parsing using FaultDescriptionParser
-	class FaultsFileParser : public GenericFileParser<FaultDescription, FaultsFile, FaultDescriptionParser>
+	class FaultsFileParser// : public GenericFileParser<FaultDescription, FaultsFile, FaultDescriptionParser>
 	{
 	public:
 		void FromStream(std::istream& stream, FaultsFile& destination);
 		void FromString(const std::string& string, FaultsFile& destination);
+
+	private:
+		GenericParallelFileParser<FaultDescription, FaultsFile, FaultDescriptionParser> baseParser;
 	};
 
 }}}

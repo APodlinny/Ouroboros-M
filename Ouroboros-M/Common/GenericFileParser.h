@@ -32,7 +32,13 @@ namespace Ouroboros { namespace Common
 					if (parser.ParseLine(currentLine, textLine))
 						destination.AddTextLine(textLine);
 					else
-						throw ParsingException(std::string("Parsing error"), currentLineNum);
+					{
+						//throw ParsingException(std::string("Parsing error"), currentLineNum);
+						std::stringstream errorMessage;
+						errorMessage << "Parsing error at line ";
+						errorMessage << currentLineNum;
+						throw std::exception(errorMessage.str().c_str());
+					}
 				}
 			}
 		}
@@ -128,7 +134,7 @@ namespace Ouroboros { namespace Common
 				src = DeleteComment(src);
 
 				if (!parser.ParseLine(src, dest))
-					throw ParsingException(std::string("Parsing error"), -1);
+					throw std::exception("Parsing exception.");
 			}
 		}
 	};

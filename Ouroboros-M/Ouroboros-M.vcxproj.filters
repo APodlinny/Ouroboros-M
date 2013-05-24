@@ -180,9 +180,6 @@
     <ClCompile Include="Faults\Parser\FaultsFileParser.cpp">
       <Filter>Source Files\Faults\Parser</Filter>
     </ClCompile>
-    <ClCompile Include="Common\ParsingException.cpp">
-      <Filter>Source Files\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Tests\Language\TestDescription.cpp">
       <Filter>Source Files\Tests\Language</Filter>
     </ClCompile>
@@ -343,9 +340,6 @@
     </ClInclude>
     <ClInclude Include="Faults\Parser\FaultsFileParser.h">
       <Filter>Header Files\Faults\Parser</Filter>
-    </ClInclude>
-    <ClInclude Include="Common\ParsingException.h">
-      <Filter>Header Files\Common</Filter>
     </ClInclude>
     <ClInclude Include="Tests.h">
       <Filter>Header Files</Filter>

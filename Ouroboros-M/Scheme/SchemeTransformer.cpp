@@ -128,28 +128,10 @@ void SchemeTransformer::IncrementIndices(SchemeDescription& scheme)
 			argument->id++;
 		}
 	}
-
-	for (std::vector<FaultDescription>::iterator faultDesc = scheme.faultDescriptions.begin();
-		faultDesc != scheme.faultDescriptions.end();
-		faultDesc++)
-	{
-		faultDesc->nodeName.id++;
-		
-		if (faultDesc->destinationName.is_initialized())
-			faultDesc->destinationName.get().id++;
-	}
 }
 
 void SchemeTransformer::AppendScheme(SchemeDescription& schemeA, const SchemeDescription& schemeB, const std::vector<StateBinding>& bindings)
 {
-	// concatenating SchemeDescription faults lists
-	for (std::vector<FaultDescription>::const_iterator faultDesc = schemeB.faultDescriptions.begin();
-		faultDesc != schemeB.faultDescriptions.end();
-		faultDesc++)
-	{
-		schemeA.faultDescriptions.push_back(*faultDesc);
-	}
-
 	// forming state bindings for result scheme
 	std::vector<StateBinding> newBindings;
 

@@ -10,6 +10,7 @@
 
 using namespace Ouroboros::Tests::Language;
 using namespace Ouroboros::Common;
+using namespace Ouroboros::Faults::Parser;
 
 namespace Ouroboros { namespace Tests { namespace Parser
 {
@@ -20,6 +21,12 @@ namespace Ouroboros { namespace Tests { namespace Parser
 	public:
 		void FromStream(std::istream& stream, TestsFile& destination);
 		void FromString(const std::string& string, TestsFile& destination);
+
+		void mapperFunc(std::string& src, TestsTextLine& dest);
+
+	private:
+		FaultDescriptionParser faultParser;
+		GenericParallelFileParser<TestsTextLine, TestsFile, TextLineParser> baseParser;
 	};
 
 }}}
