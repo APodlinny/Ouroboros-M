@@ -25,9 +25,6 @@ namespace Ouroboros { namespace Bench { namespace Language
 
 		bool operator==(const Identifier& other) const;
 
-		std::string GetFullName();
-
-		virtual std::string ToString();
 		virtual void print(std::ostream& os);
 	};
 

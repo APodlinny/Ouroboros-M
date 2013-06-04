@@ -8,15 +8,6 @@ bool TestsGroup::operator==(const TestsGroup& other)
 	return faultDescription == other.faultDescription;
 }
 
-std::string TestsGroup::ToString()
-{
-	std::stringstream result;
-	
-	print(result);
-
-	return result.str();
-}
-
 void TestsGroup::print(std::ostream& os)
 {
 	faultDescription.print(os);

@@ -15,22 +15,20 @@
 using namespace Ouroboros::Common;
 using boost::spirit::unused_type;
 
-typedef boost::variant<Ouroboros::Bench::Language::Definition, Ouroboros::Bench::Language::PortIO, unused_type> TextLineType;
-
 namespace Ouroboros { namespace Bench { namespace Language
 {
 
+	typedef boost::variant<Definition, PortIO, unused_type> TextLineType;
+
 	// Class represents text line that is used by bench file parser. It can be either IO port definition or gate definition
-	class TextLine : public IShowable
+	struct TextLine : public IShowable
 	{
-	public:
 		TextLineType textLine;
 
 		TextLine();
 		TextLine(Definition def);
 		TextLine(PortIO port);
 
-		virtual std::string ToString();
 		virtual void print(std::ostream& os);
 	};
 
@@ -51,7 +49,7 @@ namespace Ouroboros { namespace Bench { namespace Language
 
 BOOST_FUSION_ADAPT_STRUCT(
 	Ouroboros::Bench::Language::TextLine,
-	(TextLineType, textLine)
+	(Ouroboros::Bench::Language::TextLineType, textLine)
 )
 
 #endif // BENCH_TEXTLINE_H

@@ -15,13 +15,8 @@ namespace Ouroboros { namespace Tests { namespace Language
 {
 
 	// Class is a storage for TestsTextLine
-	class TestsFile : public TextLineStorage<TestsTextLine>
+	struct TestsFile : public TextLineStorage<TestsTextLine>
 	{
-	public:
-		std::vector<TestsTextLine> lines;
-
-		virtual void AddTextLine(TestsTextLine textLine);
-		virtual void Clear();
 	};
 
 }}}

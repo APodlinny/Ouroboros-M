@@ -15,9 +15,8 @@ namespace Ouroboros { namespace Faults { namespace Language
 {
 
 	// Fault description. Consists of name of the leaving gate, name of the destination gate (optional) and fault type (stuck at zero/one)
-	class FaultDescription : public IShowable
+	struct FaultDescription : public IShowable
 	{
-	public:
 		Identifier nodeName;
 		boost::optional<Identifier> destinationName;
 		FaultType::FaultTypeEnum faultType;
@@ -32,7 +31,6 @@ namespace Ouroboros { namespace Faults { namespace Language
 
 		bool operator==(const FaultDescription& other) const;
 
-		virtual std::string ToString(); 
 		virtual void print(std::ostream& os);
 	};
 

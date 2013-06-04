@@ -16,21 +16,16 @@ namespace Ouroboros { namespace Bench { namespace Language
 {
 
 	// Class represents boolean expression. It stores expression type (AND, XOR, NOT etc.) and list of arguments (names of other gates)
-	class Expression : public IShowable
+	struct Expression : public IShowable
 	{
-	public:
 		NodeType::NodeTypeEnum nodeType;
 		std::vector<Identifier> arguments;
 
 		Expression();
 
-		Expression(NodeType::NodeTypeEnum NodeType, std::vector<Identifier> &arguments);
 		Expression(NodeType::NodeTypeEnum NodeType, const std::vector<Identifier> &arguments);
 
-		virtual std::string ToString();
 		virtual void print(std::ostream& os);
-	private:
-		std::string ExpressionToString();
 	};
 
 }}}

@@ -11,18 +11,11 @@ namespace Ouroboros { namespace Faults { namespace Language
 {
 
 	// Text line storage for fault descriptions
-	class FaultsFile : public IShowable, public TextLineStorage<FaultDescription>
+	struct FaultsFile : public IShowable, public TextLineStorage<FaultDescription>
 	{
-	public:
-		std::vector<FaultDescription> lines;
-
 		void ExpandFaults();
 
-		virtual std::string ToString();
 		virtual void print(std::ostream& os);
-
-		virtual void AddTextLine(FaultDescription textLine);
-		virtual void Clear();
 	};
 
 }}}

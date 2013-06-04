@@ -15,9 +15,8 @@ namespace Ouroboros { namespace Scheme
 	typedef std::pair<DescriptionReference, DescriptionReference> StateBinding;
 
 	// Scheme description. Consists of node descriptions collection, collections of primary and non-primary nodes indices and state bindings (each binding is a pair of nodes)
-	class SchemeDescription
+	struct SchemeDescription
 	{
-	public:
 		std::vector<NodeDescription> nodeDescriptions;
 		std::vector<DescriptionReference> primaryIOs;
 		std::vector<DescriptionReference> nonPrimaryOutputs;

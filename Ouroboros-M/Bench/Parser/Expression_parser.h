@@ -30,7 +30,6 @@ namespace Ouroboros { namespace Bench { namespace Parser
 
 		qi::rule<Iterator, Expression(), ascii::space_type> expr_rule;
 		qi::rule<Iterator, std::vector<Identifier>(), ascii::space_type> list_rule;
-		qi::rule<Iterator, NodeType::NodeTypeEnum(), ascii::space_type> expr_type_rule;
 		qi::symbols<char, NodeType::NodeTypeEnum> expr_variants;
 		Identifier_parser id_parser;
 	};

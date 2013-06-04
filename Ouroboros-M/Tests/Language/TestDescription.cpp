@@ -27,18 +27,7 @@ bool TestDescription::operator<(const TestDescription& other) const
 	return (inputsVector + outputsVector) < (other.inputsVector + other.outputsVector);
 }
 
-std::string TestDescription::ToString()
-{
-	std::stringstream result;
-
-	print(result);
-
-	return result.str();
-}
-
 void TestDescription::print(std::ostream& os)
 {
-	std::vector<bool>::const_iterator bit;
-
 	os << inputsVector << " " << outputsVector;
 }

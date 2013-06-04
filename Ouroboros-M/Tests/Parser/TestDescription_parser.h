@@ -27,7 +27,6 @@ namespace Ouroboros { namespace Tests { namespace Parser
 		TestDescription_parser();
 
 		qi::rule<Iterator, TestDescription(), ascii::space_type> test_rule;
-		qi::rule<Iterator, std::string(), ascii::space_type> portVector_rule;
 	};
 
 }}}

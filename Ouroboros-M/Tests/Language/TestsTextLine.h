@@ -18,9 +18,8 @@ namespace Ouroboros { namespace Tests { namespace Language
 
 
 	// Class for representation or tests file text line. Can be either a fault description or a test description
-	class TestsTextLine
+	struct TestsTextLine
 	{
-	public:
 		TextLineType textLine;
 
 		TestsTextLine() {}

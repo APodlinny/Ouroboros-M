@@ -14,15 +14,13 @@ namespace Ouroboros { namespace Bench { namespace Language
 {
 
 	// Class represents gate definition. It stores gate name and bound expression for this gate
-	class Definition : public IShowable
+	struct Definition : public IShowable
 	{
-	public:
 		Identifier defined;
 		Expression expression;
 
 		Definition();
 
-		virtual std::string ToString(); 
 		virtual void print(std::ostream& os);
 	};
 

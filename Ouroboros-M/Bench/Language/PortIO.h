@@ -15,16 +15,14 @@ namespace Ouroboros { namespace Bench { namespace Language
 {
 
 	// Class represents IO port definition. It consists of port type (INPUT or OUTPUT) and port name.
-	class PortIO : public IShowable
+	struct PortIO : public IShowable
 	{
-	public:
 		NodeType::NodeTypeEnum portType;
 		Identifier portName;
 
-		PortIO();
+		PortIO() {}
 		PortIO(NodeType::NodeTypeEnum portType, Identifier portName);
 
-		virtual std::string ToString();
 		virtual void print(std::ostream& os);
 	};
 

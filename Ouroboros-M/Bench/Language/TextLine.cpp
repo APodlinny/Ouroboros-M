@@ -34,15 +34,6 @@ void PrintVisitor::operator()(unused_type unused) const
 {
 }
 
-std::string TextLine::ToString()
-{
-	std::stringstream os;
-
-	print(os);
-
-	return os.str();
-}
-
 void TextLine::print(std::ostream& os)
 {
 	boost::apply_visitor(PrintVisitor(os), textLine);

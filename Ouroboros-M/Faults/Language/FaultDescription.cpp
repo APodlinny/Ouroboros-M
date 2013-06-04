@@ -47,15 +47,6 @@ bool FaultDescription::operator==(const FaultDescription& other) const
 	return (firstName == secondName) && (faultType == other.faultType);
 }
 
-std::string FaultDescription::ToString()
-{
-	std::stringstream os;
-
-	print(os);
-
-	return os.str();
-}
-
 void FaultDescription::print(std::ostream& os)
 {
 	if (faultType == FaultType::NONE)

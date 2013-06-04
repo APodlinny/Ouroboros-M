@@ -7,75 +7,10 @@ Expression::Expression()
 {
 }
 
-Expression::Expression(NodeType::NodeTypeEnum NodeType, std::vector<Identifier> &arguments)
-{
-	this->nodeType = NodeType;
-	this->arguments = arguments;
-}
-
 Expression::Expression(NodeType::NodeTypeEnum NodeType, const std::vector<Identifier> &arguments)
 {
 	this->nodeType = NodeType;
 	this->arguments = arguments;
-}
-
-std::string Expression::ToString()
-{
-	std::string expr = ExpressionToString();
-	
-	if (arguments.size() == 0)
-		return expr.append("()");
-	else
-	{
-		expr.append("(");
-
-		for (unsigned i = 0; i < arguments.size(); i++)
-		{
-			expr.append(arguments[i].ToString());
-			expr.append(",");
-		}
-
-		expr[expr.length() - 1] = ')';
-		return expr;
-	}
-}
-
-std::string Expression::ExpressionToString()
-{
-	std::string result;
-
-	switch (nodeType)
-	{
-	case NodeType::AND:
-		result = "and";
-		break;
-	case NodeType::NAND:
-		result = "nand";
-		break;
-	case NodeType::OR:
-		result = "or";
-		break;
-	case NodeType::NOR:
-		result = "nor";
-		break;
-	case NodeType::XOR:
-		result = "xor";
-		break;
-	case NodeType::NOT:
-		result = "not";
-		break;
-	case NodeType::BUF:
-		result = "buf";
-		break;
-	case NodeType::DELAY:
-		result = "dff";
-		break;
-	default:
-		result = "none";
-		break;;
-	}
-
-	return result;
 }
 
 void Expression::print(std::ostream& os)

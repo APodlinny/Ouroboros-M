@@ -31,15 +31,6 @@ void FaultsFile::ExpandFaults()
 	}
 }
 
-std::string FaultsFile::ToString()
-{
-	std::stringstream os;
-
-	print(os);
-
-	return os.str();
-}
-
 void FaultsFile::print(std::ostream& os)
 {
 	Logger::ostream() << "Printing faults file to output stream. ";
@@ -52,14 +43,4 @@ void FaultsFile::print(std::ostream& os)
 	}
 
 	Logger::ostream() << "Time: " << t.GetTime() << "\n";
-}
-
-void FaultsFile::AddTextLine(FaultDescription textLine)
-{
-	lines.push_back(textLine);
-}
-
-void FaultsFile::Clear()
-{
-	lines.clear();
 }

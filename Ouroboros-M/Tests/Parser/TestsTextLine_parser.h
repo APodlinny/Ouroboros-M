@@ -33,7 +33,6 @@ namespace Ouroboros { namespace Tests { namespace Parser
 		qi::rule<Iterator, TestsTextLine(), ascii::space_type> line_rule;
 		FaultDescription_parser fault_parser;
 		TestDescription_parser test_parser;
-		Identifier_parser id_parser;
 	};
 
 }}}

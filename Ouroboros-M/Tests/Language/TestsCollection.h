@@ -10,12 +10,10 @@ namespace Ouroboros { namespace Tests { namespace Language
 {
 
 	// Tests collection is just a set of tests groups. Each group consists of fault description and corresponding set of tests
-	class TestsCollection
+	struct TestsCollection
 	{
-	public:
 		std::vector<TestsGroup> testsGroups;
 
-		virtual std::string ToString();
 		virtual void print(std::ostream& os);
 	};
 

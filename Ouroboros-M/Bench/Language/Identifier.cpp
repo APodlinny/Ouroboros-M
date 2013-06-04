@@ -52,29 +52,10 @@ bool Identifier::operator==(const Identifier& other) const
 		(id == other.id);
 }
 
-std::string Identifier::GetFullName()
-{
-	using boost::format;
-	std::string result = name;
-
-	if (id != -1)
-	{
-		auto suffix = (format("_%1%") % id).str();
-		return result.append(suffix);
-	}
-
-	return result;
-}
-
-std::string Identifier::ToString()
-{
-	return GetFullName();
-}
-
 void Identifier::print(std::ostream& os)
 {
 	os << name;
 	
 	if (id != -1)
-		os << "_" << id;// << "]";
+		os << "_" << id;
 }

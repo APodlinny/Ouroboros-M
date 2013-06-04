@@ -16,15 +16,13 @@ namespace Ouroboros { namespace Tests { namespace Language
 {
 
 	// Tests group consists of fault description and a set of corresponding tests
-	class TestsGroup : public IShowable
+	struct TestsGroup : public IShowable
 	{
-	public:
 		FaultDescription faultDescription;
 		std::vector<TestDescription> tests;
 
 		bool operator==(const TestsGroup& other);
 
-		virtual std::string ToString();
 		virtual void print(std::ostream& os);
 	};
 
