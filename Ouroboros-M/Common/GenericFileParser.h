@@ -12,12 +12,12 @@ namespace Ouroboros { namespace Common
 	class GenericFileParser
 	{
 	public:
-		void FromString(const std::string& string, TextLineStorage& destination)
+		virtual void FromString(const std::string& string, TextLineStorage& destination)
 		{
 			FromStream(std::istringstream(string), destination);
 		}
 
-		void FromStream(std::istream& stream, TextLineStorage& destination)
+		virtual void FromStream(std::istream& stream, TextLineStorage& destination)
 		{
 			destination.Clear();
 
@@ -81,12 +81,12 @@ namespace Ouroboros { namespace Common
 	class GenericParallelFileParser : public GenericFileParser<TextLine, TextLineStorage, Parser>
 	{
 	public:
-		void FromString(const std::string& string, TextLineStorage& destination)
+		virtual void FromString(const std::string& string, TextLineStorage& destination)
 		{
 			FromStream(std::istringstream(string), destination);
 		}
 
-		void FromStream(std::istream& stream, TextLineStorage& destination)
+		virtual void FromStream(std::istream& stream, TextLineStorage& destination)
 		{
 			destination.Clear();
 

@@ -5,6 +5,7 @@ using namespace Ouroboros::Scheme;
 
 SchemeCopier::SchemeCopier(SchemeDescription& scheme) : resultScheme(scheme)
 {
+	SchemeTransformer::RemoveRecursions(resultScheme);
 	copy = resultScheme;
 	appendedScheme = copy;
 }

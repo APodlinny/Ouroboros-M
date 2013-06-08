@@ -13,9 +13,8 @@ namespace Ouroboros { namespace Bench { namespace Language
 {
 
 	// Class represents gate name. Gate name consists of string name and index (-1 by default), which is used in scheme copying.
-	class Identifier : public IShowable
+	struct Identifier : public IShowable
 	{
-	public:
 		std::string name;
 		int id;
 

@@ -127,7 +127,6 @@ void OuroborosAlgo::Run()
 	
 	// converting bench file into scheme, removing flip-flops, initializing scheme copier
 	SchemeConverter::BenchToScheme(benchFile, scheme);
-	SchemeTransformer::RemoveRecursions(scheme);
 	SchemeCopier copier(scheme);
 	
 	while (true)
@@ -245,42 +244,6 @@ void OuroborosAlgo::Run()
 
 		Logger::ostream() << "Time: " << faultLookupTime.GetTime() << std::endl;
 
-		// repacking remained tests
-		/*TestsTransformer::ExpandIndefiniteValues(tests);
-		TestsTransformer::PackBySchemeInfo(tests, stateInputs);
-		TestsTransformer::RemoveEmptyGroups(tests);*/
-
-		/*Logger::ostream() << "Tested faults by ouroboros: \n";
-		faultLookupTime.Init();
-
-		for (std::vector<TestsGroup>::iterator group = tests.testsGroups.begin();
-			group != tests.testsGroups.end();
-			group++)
-		{
-			if (group->tests.size() == 0)
-				continue;
-
-			Logger::ostream() << '\t';
-			group->faultDescription.print(Logger::ostream());
-
-			// deleting corresponding fault from faults lists
-			std::vector<FaultDescription>::iterator result = std::remove(
-				originalFaults.lines.begin(),
-				originalFaults.lines.end(),
-				group->faultDescription);
-
-			originalFaults.lines.resize(result - originalFaults.lines.begin());
-
-			result = std::remove(
-				faultsFile.lines.begin(),
-				faultsFile.lines.end(),
-				group->faultDescription);
-
-			faultsFile.lines.resize(result - faultsFile.lines.begin());
-		}
-
-		Logger::ostream() << "Time: " << faultLookupTime.GetTime() << std::endl;*/
-
 		// if copies-number limit is exceeded or all faults are already tested
 		if ((copiesNumber == 1) || (faultsFile.lines.size() == 0))
 			// exit the loop
@@ -318,17 +281,6 @@ void OuroborosAlgo::Run()
 
 	// printing HOPE simulation results
 	runHope(benchFileName, faultsFileName, testsFileName);
-
-	/*// printing a list of untested faults
-	for (std::vector<FaultDescription>::iterator fault = faultsFile.lines.begin();
-		fault != faultsFile.lines.end();
-		fault++)
-	{
-		fault->print(Logger::ostream());
-		Logger::ostream() << ' ';
-	}
-
-	Logger::ostream() << std::endl;*/
 }
 
 // function that runs atalanta using specified file names for bench, faults and tests

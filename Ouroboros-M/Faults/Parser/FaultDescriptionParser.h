@@ -13,11 +13,7 @@ namespace Ouroboros { namespace Faults { namespace Parser
 {
 
 	// Text line parser for parsing strings into fault description structure
-	class FaultDescriptionParser : public GenericTextLineParser<FaultDescription>
-	{
-	public:
-		virtual bool ParseLine(const std::string& string, FaultDescription& destination);
-	};
+	struct FaultDescriptionParser : public GenericTextLineParser<FaultDescription, FaultDescription_parser> {};
 
 }}}
 

@@ -12,9 +12,8 @@ namespace Ouroboros { namespace Tests { namespace Parser
 {
 
 	// Class for parsing a line string into TestsTextLine structure
-	class TextLineParser : public GenericTextLineParser<TestsTextLine>
+	struct TextLineParser : public GenericTextLineParser<TestsTextLine, TextLine_parser>
 	{
-	public:
 		virtual bool ParseLine(const std::string& string, TestsTextLine& destination);
 	};
 

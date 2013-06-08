@@ -12,11 +12,7 @@ namespace Ouroboros { namespace Bench { namespace Parser
 {
 
 	// Class that parses one line from bench file
-	class TextLineParser : public GenericTextLineParser<TextLine>
-	{
-	public:
-		virtual bool ParseLine(const std::string& string, TextLine& destination);
-	};
+	struct TextLineParser : public GenericTextLineParser<TextLine, TextLine_parser> {};
 
 }}}
 

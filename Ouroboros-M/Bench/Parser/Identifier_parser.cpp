@@ -6,21 +6,6 @@ using ascii::char_;
 
 Identifier_parser::Identifier_parser() : Identifier_parser::base_type(id_rule, "Identifier")
 {
-	using qi::int_;
-	using qi::lit;
-	using qi::lexeme;
-	using ascii::char_;
-	using qi::on_error;
-	using qi::fail;
-
-	using phoenix::construct;
-	using phoenix::val;
-	using namespace qi::labels;
-
 	str_rule %= lexeme[+char_("a-zA-Z0-9_][")];
-	str_rule.name("string name");
-
-	//id_rule %= (str_rule >> lit("{") >> int_ >> lit("}")) | str_rule;
 	id_rule %= str_rule;
-	id_rule.name("identifier");
 }
